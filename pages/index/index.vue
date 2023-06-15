@@ -8,6 +8,8 @@
 </template>
 
 <script>
+	import user from "@/api/user.js";
+
 	export default {
 		data() {
 			return {
@@ -16,6 +18,19 @@
 		},
 		onLoad() {
 
+		},
+		mounted() {
+			user.getData('api/user?arg1=data1', 'id:1', true).then(res => {
+				if (res.statusCode == 200) {
+
+				} else {
+					uni.showToast({
+						icon: 'none',
+						title: res.errMsg
+					})
+					return false
+				}
+			})
 		},
 		methods: {
 
