@@ -4,13 +4,17 @@
 		<view class="text-area">
 			<text class="title">{{title}}</text>
 		</view>
+		<BottomToolBar></BottomToolBar>
 	</view>
 </template>
 
 <script>
 	import user from "@/api/user.js";
-
+	import BottomToolBar from '@/components/d-BottomToolBar/index.vue';
 	export default {
+		components:{
+			BottomToolBar
+		},
 		data() {
 			return {
 				title: 'Hello'
