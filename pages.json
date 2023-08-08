@@ -5,7 +5,10 @@
 			"style": {
 				"navigationBarTitleText": "首页",
 				"navigationStyle": "custom",
-				"navigationBarTextStyle": "black"
+				"navigationBarTextStyle": "black",
+				"app-plus": {
+					"titleView": false
+				}
 				// #ifdef APP-PLUS
 				,
 				"enablePullDownRefresh": true
@@ -25,5 +28,5 @@
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
 	},
-	"uniIdRouter": {} 
+	"uniIdRouter": {}
 }
