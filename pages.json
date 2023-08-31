@@ -18,7 +18,16 @@
 				// #endif
 			}
 		}
-	],
+	    ,{
+            "path" : "pages/search/index",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "搜索",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
 	"subPackages": [{
 		"root": "pages-user",
 		"pages": [{
