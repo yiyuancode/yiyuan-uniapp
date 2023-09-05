@@ -1,22 +1,21 @@
 <template>
 	<!-- 底部导航 -->
 	<view>
-		<view class="d-footer">
-			<view class="d-item" v-for="(item,index) in barList" :key="index" @click="goRouter(item)">
-				<view class="block" v-if="item.path!= activeRouter">
-					<image :src="item.image"></image>
-					<view class="text">
-						{{item.name}}
-					</view>
-				</view>
-				<view class="block" v-else>
-					<image :src="item.checked"></image>
-					<view class="text">
-						{{item.name}}
-					</view>
-				</view>
-			</view>
-		</view>
+		<u-tabbar
+			:value="checkVal"
+				@change="checkMenu"
+			:fixed="true"
+			:placeholder="true"
+			:safeAreaInsetBottom="true"
+			:activeColor="444942"
+			:zIndex="999"
+		>
+			<u-tabbar-item :text="item.name" :icon="item.image"  v-for="(item,index) in barList"  :key="index"></u-tabbar-item>
+		<!-- 	<u-tabbar-item text="分类" icon="photo" ></u-tabbar-item>
+			<u-tabbar-item text="购物车" icon="play-right" ></u-tabbar-item>
+			<u-tabbar-item text="消息" icon="play-right" badge="3" ></u-tabbar-item>
+			<u-tabbar-item text="我的" icon="account" ></u-tabbar-item> -->
+		</u-tabbar>
 	</view>
 </template>
 
@@ -28,12 +27,12 @@
 				barList: [{
 						name: '首页',
 						image: '/static/images/toolbar-icon/home.png',
-						checked: '/static/images/toolbar-icon/home.png',
+						checked: '/static/images/toolbar-icon/homed.png',
 						path: '/Index/index'
 					}, {
 						name: '分类',
 						image: '/static/images/toolbar-icon/category.png',
-						checked: '/static/images/toolbar-icon/home.png',
+						checked: '/static/images/toolbar-icon/categoryed.png',
 						path: '/category/index'
 					},
 					{
@@ -45,22 +44,35 @@
 					{
 						name: '消息',
 						image: '/static/images/toolbar-icon/mess.png',
-						checked: '/static/images/toolbar-icon/home.png',
+						checked: '/static/images/toolbar-icon/messed.png',
 						path: '/Message/index'
 					},
 					{
 						name: '我的',
 						image: '/static/images/toolbar-icon/user.png',
-						checked: '/static/images/toolbar-icon/home.png',
+						checked: '/static/images/toolbar-icon/usered.png',
 						path: '/User/index'
 					},
-				]
+				],
+				checkVal:0
 			}
 		},
 		methods: {
 			goRouter(item) {
 				this.activeRouter = item.path
 			}
+			,checkMenu(name) {
+			if (name === 2) return uni.$u.toast('请您先登录')
+			else this.checkVal = name;
+			// 循环返回选中图标
+			Object.keys(this.barList).forEach(key=>{
+				if(name==key){
+					this.barList[key].image=this.barList[key].checked;
+					return;
+				}
+			})
+			console.log(this.barList)
+		},
 		}
 	}
 </script>

@@ -23,8 +23,10 @@
 			}
 		},
 		methods: {
-			toUrl() {
-
+			toUrl(name) {
+			uni.navigateTo({
+				url:name
+			})
 			}
 		}
 	}
