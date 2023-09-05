@@ -171,13 +171,11 @@
 	import user from "@/api/user.js";
 	import BottomToolBar from '@/components/d-BottomToolBar/index.vue';
 	import homeHead from '@/components/home/top-shop-content.vue'
-	import searchBar from '@/components/search-bar/index.vue'
 	import WaterfallFlow from '@/components/waterfall/waterfall.vue'
 	export default {
 		components: {
 			BottomToolBar,
 			homeHead,
-			searchBar,
 			WaterfallFlow
 		},
 		data() {
