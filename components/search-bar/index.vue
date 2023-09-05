@@ -1,10 +1,19 @@
 <template>
-	<view class="search" @click="toUrl('/pages/search/index')">
-		<u-notice-bar icon="search" color="#A1A4A0" bgColor="transparent" fontSize="12" :text="listText"
-			direction="column"></u-notice-bar>
-		<view class="search-btn">
-			搜索
+
+	<view class="search">
+		<view class="search-bg" :style="'padding-top:' + (titleHeight) + 'px;padding-bottom:22rpx'">
+			<!-- <u-icon size="40" name="arrow-left"></u-icon> -->
+			<!-- <u-navbar title="个人中心"  :autoBack="true">
+			</u-navbar> -->
+			<u-navbar  @rightClick="rightClick" :autoBack="true">
+				<view class="u-nav-slot" slot="left">
+					<u-icon name="arrow-left" size="19"></u-icon>
+					<u-search v-model="value14" showAction>
+					</u-search>
+				</view>
+			</u-navbar>
 		</view>
+	</view>
 	</view>
 </template>
 
@@ -20,13 +29,21 @@
 					'无菌蛋',
 					'板凳木头'
 				],
+				titleHeight: '',
 			}
 		},
+		created() {
+			this.getHeight();
+		},
 		methods: {
+			getHeight() {
+				let res = uni.getMenuButtonBoundingClientRect();
+				this.titleHeight = res.top;
+			},
 			toUrl(name) {
-			uni.navigateTo({
-				url:name
-			})
+				uni.navigateTo({
+					url: name
+				})
 			}
 		}
 	}
@@ -34,32 +51,40 @@
 
 <style lang="scss" scoped>
 	.search {
-		height: 80rpx;
-		margin: 0 23.8rpx;
-		margin-top: 46rpx;
-		border-radius: 24rpx;
-		border: 4rpx solid #000;
-		position: relative;
+		background: linear-gradient(180deg, #FFF 97.21%, #F3F5F8 100%);
 
-		&-btn {
-			position: absolute;
-			right: 10rpx;
-			top: 50%;
-			transform: translateY(-50%);
-			width: 114.612rpx;
-			height: 64rpx;
-			border-radius: 16rpx;
-			background: #000;
-			color: #FFF;
-			text-align: center;
-			font-family: PingFang SC;
-			font-size: 14px;
-			line-height: 64rpx;
-			font-weight: 400;
+		&-bg {
+			background: url('/static/images/home/head-bg.png') center no-repeat;
 		}
 
-		/deep/ .u-icon__icon {
-			font-size: 30px;
+		.search-box {
+			height: 64rpx;
+			margin: 0 23.8rpx;
+			margin-top: 46rpx;
+			border-radius: 24rpx;
+			border: 4rpx solid #000;
+			position: relative;
+
+			&-btn {
+				position: absolute;
+				right: 10rpx;
+				top: 50%;
+				transform: translateY(-50%);
+				width: 114.612rpx;
+				height: 64rpx;
+				border-radius: 16rpx;
+				background: #000;
+				color: #FFF;
+				text-align: center;
+				font-family: PingFang SC;
+				font-size: 14px;
+				line-height: 64rpx;
+				font-weight: 400;
+			}
+
+			/deep/ .u-icon__icon {
+				font-size: 30px;
+			}
 		}
 	}
 </style>
