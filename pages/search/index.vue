@@ -2,8 +2,15 @@
 	<view>
 		<search :hotList="hotList" @input="input" @change="change"></search>
 		<u-scroll-list>
-			<view v-for="(item, index) in list" :key="index">
-				<image :src="item.thumb"></image>
+			<view class="scroll">
+				<view class="scroll_item soar">
+
+				</view>
+			</view>
+			<view class="scroll">
+				<view class="scroll_item soar">
+
+				</view>
 			</view>
 		</u-scroll-list>
 	</view>
@@ -46,6 +53,16 @@
 	}
 </script>
 
-<style>
+<style lang="scss" scoped>
+	.scroll {
+		.soar {
+			background: url('/static/images/common/soar.png') top no-repeat;
+			// background-image: url('/static/images/common/soar.png');
+		}
 
+		&_item {
+			width: 664rpx;
+			height: 672rpx;
+		}
+	}
 </style>

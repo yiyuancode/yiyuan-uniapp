@@ -1,7 +1,7 @@
 <template>
 	<view class="top-shop">
 		<view class="header">
-			<view class="shop-width" :style="'padding-top:' + (titleHeight) + 'px;padding-bottom:22rpx'">
+			<view class="shop-width" :style="{'padding-top':$uniHeight().top+'px'}">
 				<view class="shop">
 					<view class="shop-name">
 						<image src="@/static/images/home/logo.png" class="logo"></image>
@@ -45,6 +45,9 @@
 				],
 			}
 		},
+		options: {
+			styleIsolation: 'shared' // 解除样式隔离
+		},
 		created() {
 			this.getHeight();
 		},
@@ -52,9 +55,9 @@
 
 		},
 		methods: {
-			toUrl(url){
+			toUrl(url) {
 				uni.navigateTo({
-					url:url
+					url: url
 				})
 			},
 			getHeight() {
@@ -74,11 +77,12 @@
 		background: #F2F4F7;
 
 		.header {
-			background: url('/static/images/home/head-bg.png') center no-repeat;
+			background: url('/static/images/home/head-bg.png') top no-repeat;
 
 			.shop-width {
 				width: calc(100% - 46rpx);
 				margin: 0 auto;
+				padding-bottom: 22rpx
 			}
 
 			.shop {
@@ -136,7 +140,7 @@
 				border-radius: 24rpx;
 				border: 4rpx solid #000;
 				position: relative;
-
+			
 				&-btn {
 					position: absolute;
 					right: 10rpx;
@@ -162,10 +166,19 @@
 
 
 	.search /deep/ .u-icon__icon {
-		font-size: 31px;
-		line-height: 23px;
-		font-weight: bold;
+		font-size: 62rpx !important;
+		line-height: 51rpx !important;
+		font-weight: bold !important;
 		top: 0px;
-		color: #000000;
+		color: #000000 !important;
+	
+	}
+	.search /deep/ .u-notice__swiper__item__text{
+		color: rgba(0, 0, 0, 0.50) !important;
+		font-family: PingFang SC;
+		font-size: 24rpx !important;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
 	}
 </style>

@@ -11,6 +11,14 @@ App.mpType = 'app'
 const app = new Vue({
 	...App
 })
+// 定义全局方法
+// uni顶部高度
+Vue.prototype.$uniHeight = function() {
+	let res = uni.getMenuButtonBoundingClientRect();
+
+	return res;
+};
+
 app.$mount()
 // #endif
 

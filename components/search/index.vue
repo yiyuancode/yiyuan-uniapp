@@ -1,64 +1,61 @@
 <template>
 	<view class="page-main">
 		<view class="search-box">
-			<!-- 		<image class="search-img" :src="searchImg"></image>
-			<input class="search-input" :placeholder="placeholder" type="text" v-model.trim="searchText"
-				@confirm="confirmSearch" @input="inputSearch" placeholder-class="placeholder-name" />
-			<view class="search-name" @click="confirmSearch">搜索</view> -->
-			<u-navbar leftIconColor="#000000" leftIconSize="25px" safeAreaInsetTop bgColor="#F3F5F8">
-				<view class="u-nav-slot search-header" slot="center">
+			<view class="search" :style="{'padding-top':$uniHeight().top+50+'px'}">
 
-					<image class="search-img" :src="searchImg"></image>
-					<input class="search-input" :placeholder="placeholder" type="text" v-model.trim="searchText"
-						@confirm="confirmSearch" @input="inputSearch" placeholder-class="placeholder-name" />
-					<view class="search-name" @click="confirmSearch">搜索</view>
-				</view>
-			</u-navbar>
-			<view class="search-history" v-if="historyList.length" style="margin-top: 12vh;">
-				<view class="history-title">
-					<view class="title-name">
-						<view class="text">
+				<u-navbar leftIconColor="#000000" background="transparent" leftIconSize="25px" safeAreaInsetTop>
+					<view class="u-nav-slot search-header" slot="center">
+
+						<image class="search-img" :src="searchImg"></image>
+						<input class="search-input" :placeholder="placeholder" type="text" v-model.trim="searchText"
+							@confirm="confirmSearch" @input="inputSearch" placeholder-class="placeholder-name" />
+						<view class="search-name" @click="confirmSearch">搜索</view>
+					</view>
+				</u-navbar>
+
+				<view class="search-history" v-if="historyList.length">
+					<view class="history-title">
+						<view class="title-name">
 							搜索历史
 						</view>
-						<view class="bg">
-
+						<view class="history-delete" v-if="isDelete">
+							<view class="delete-all" @click="deleteAll">全部删除</view>
+							<view class="delete-line"></view>
+							<view class="delete-complete" @click="deleteHistory">完成</view>
+						</view>
+						<image v-else class="title-img" :src="deleteImg" @click="deleteHistory"></image>
+					</view>
+					<view class="history-list">
+						<view class="history-name" :style="isDelete?'padding:0 32rpx 0 16rpx;':''"
+							v-for="(item,index) in historyList" :key="index" @click="clickHis(item,index)">
+							{{item}}
+							<span class="delete-icon" v-if="isDelete">
+								<image src="@/static/images/icon/close.png" mode=""></image>
+							</span>
 						</view>
 					</view>
-					<view class="history-delete" v-if="isDelete">
-						<view class="delete-all" @click="deleteAll">全部删除</view>
-						<view class="delete-line"></view>
-						<view class="delete-complete" @click="deleteHistory">完成</view>
-					</view>
-					<image v-else class="title-img" :src="deleteImg" @click="deleteHistory"></image>
 				</view>
-				<view class="history-list">
-					<view class="history-name" :style="isDelete?'padding:0 32rpx 0 16rpx;':''"
-						v-for="(item,index) in historyList" :key="index" @click="clickHis(item,index)">
+			</view>
+			<u-gap height="6" bgColor="#F2F4F7"></u-gap>
+			<view class="search-history" v-if="hotList.length">
+				<view class="history-title">
+					<view class="title-name">搜索发现
+					</view>
+					<view class="f5">
+						换一换
+						<image class="title-img" :src="seeMore?seeImg:noSeeImg"></image>
+					</view>
+				</view>
+				<view class="history-list" v-if="seeMore">
+					<view class="history-name" v-for="(item,index) in hotList" :key="index" @click="clickHis(item)">
 						{{item}}
-						<span class="delete-icon" v-if="isDelete">x</span>
 					</view>
 				</view>
 			</view>
+
 		</view>
 
-		<view class="search-history" v-if="hotList.length">
-			<view class="history-title">
-				<view class="title-name">搜索发现<view class="bg">
-
-					</view>
-				</view>
-				<view class="f5">
-					换一换
-					<image class="title-img" :src="seeMore?seeImg:noSeeImg" ></image>
-				</view>
-			</view>
-			<view class="history-list" v-if="seeMore">
-				<view class="history-name" v-for="(item,index) in hotList" :key="index" @click="clickHis(item)">
-					{{item}}
-				</view>
-			</view>
-		</view>
-		<scroll-view class="blur-list" v-if="searchText && blurList.length>0" scroll-y="true" scroll-with-animation>1111111111
+		<scroll-view class="blur-list" v-if="searchText && blurList.length>0" scroll-y="true" scroll-with-animation>
 			<view class="blur-item" v-for="(item,index) in blurList" :key="index" @click.stop="clickHis(item)">{{item}}
 			</view>
 		</scroll-view>
@@ -76,7 +73,7 @@
 			//输入框placeholder
 			placeholder: {
 				type: String,
-				default: '请输入',
+				default: '请输入搜索关键词',
 			},
 			//模糊搜索内容
 			blurList: {
@@ -104,6 +101,9 @@
 				seeMore: true,
 				isDelete: false
 			}
+		},
+		options: {
+			styleIsolation: 'shared' // 解除样式隔离
 		},
 		mounted() {
 			this.historyList = uni.getStorageSync(this.storageKey) || []
@@ -161,12 +161,16 @@
 <style lang="scss" scoped>
 	.page-main {
 		width: 100%;
-		background-color: #F2F4F7;
 		display: inline-block;
 		position: relative;
 
+		.search {
+			background: url('/static/images/home/head-bg.png') top no-repeat;
+
+		}
+
 		.search-box {
-			background: url('/static/images/home/head-bg.png') center no-repeat;
+			background: linear-gradient(180deg, #FFF 97.21%, #F3F5F8 100%);
 		}
 
 		.search-header {
@@ -183,6 +187,7 @@
 				left: 64rpx;
 				width: 32rpx;
 				height: 32rpx;
+
 			}
 
 			.search-input {
@@ -190,7 +195,6 @@
 				width: 63%;
 				height: 64rpx;
 				line-height: 24rpx;
-				background-color: #F2F3F5;
 				font-size: 30rpx;
 				color: rgba(0, 0, 0, 0.45);
 				border-radius: 16rpx;
@@ -222,16 +226,19 @@
 		.search-history {
 			padding: 0 20rpx;
 			margin-top: 24rpx;
-			.f5{
-				color:  #6D746B;
+
+			.f5 {
+				color: #6D746B;
 				text-align: center;
 				font-family: PingFang SC;
 				font-size: 12px;
 				font-weight: 400;
-				image{
+
+				image {
 					vertical-align: middle;
 				}
 			}
+
 			// background: linear-gradient(180deg, #FFF 97.21%, #F3F5F8 100%);
 			.history-title {
 				display: flex;
@@ -244,20 +251,20 @@
 					font-weight: bold;
 					margin-left: 12rpx;
 					position: relative;
-					.text{
-						// position: absolute;
-						// width: 100%;
-						// z-index: 999;
-					}
+					display: inline-block;
 				}
 
-				.bg {
+				.title-name::before {
+					content: "";
 					width: 100%;
-					height: 20rpx;
 					background: linear-gradient(rgba(190, 240, 0, 1), rgba(190, 240, 0, 0));
+					height: 20rpx;
 					position: absolute;
-					bottom: 2rpx;
+					left: 0;
+					bottom: 0;
+					// z-index: -1;
 				}
+
 
 				.title-img {
 					width: 34rpx;
@@ -300,8 +307,7 @@
 
 				.history-name {
 					border-radius: 88rpx;
-					// background:  #F2F4F7;
-					background-color: #FFFFFF;
+					background: #F2F4F7;
 					height: 48rpx;
 					line-height: 48rpx;
 					padding: 0 24rpx;
@@ -309,7 +315,6 @@
 					align-items: center;
 					justify-content: center;
 					margin: 10rpx 12rpx;
-					font-size: 26rpx;
 					color: #666666;
 					overflow: hidden;
 					text-overflow: ellipsis;
@@ -317,13 +322,25 @@
 					-webkit-box-orient: vertical;
 					-webkit-line-clamp: 1;
 					position: relative;
+					color: #444942;
+					font-family: PingFang SC;
+					font-size: 24rpx;
+					font-style: normal;
+					font-weight: 400;
+
 
 					.delete-icon {
+						display: block;
 						position: absolute;
+						top: 50%;
+						transform: translateY(-38%);
 						font-size: 26rpx;
 						color: #e4e4e5;
-						right: 12rpx;
-						bottom: 2rpx;
+						right: 7rpx;
+						image{
+							width: 32rpx;
+							height: 32rpx;
+						}
 					}
 				}
 			}
@@ -352,5 +369,13 @@
 				-webkit-line-clamp: 1;
 			}
 		}
+	}
+
+	/deep/ .u-status-bar {
+		background-color: transparent !important;
+	}
+
+	/deep/ .u-navbar__content {
+		background-color: transparent !important;
 	}
 </style>
