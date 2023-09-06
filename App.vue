@@ -23,7 +23,7 @@
 				      console.log('YouSheBiaoTiHei字体加载失败', error);
 				    }
 				})
-			},300)
+			},50)
 
 		},
 		onShow: function() {
@@ -39,5 +39,10 @@
 <style lang="scss">
 	@import "uview-ui/index.scss";
 	/*每个页面公共css */
-
+page{
+	width: 100%;
+}
+.container{
+	width: 100%;
+}
 </style>

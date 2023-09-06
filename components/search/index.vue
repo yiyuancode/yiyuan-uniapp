@@ -170,7 +170,7 @@
 		}
 
 		.search-box {
-			background: linear-gradient(180deg, #FFF 97.21%, #F3F5F8 100%);
+			// background: linear-gradient(180deg, #FFF 97.21%, #F3F5F8 100%);
 		}
 
 		.search-header {
@@ -188,6 +188,16 @@
 				width: 32rpx;
 				height: 32rpx;
 
+			}
+
+			.search-input::after {
+				content: "";
+				width: 1px;
+				height: 14.5px;
+				background-color: #000;
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%);
 			}
 
 			.search-input {
@@ -239,7 +249,6 @@
 				}
 			}
 
-			// background: linear-gradient(180deg, #FFF 97.21%, #F3F5F8 100%);
 			.history-title {
 				display: flex;
 				align-items: center;

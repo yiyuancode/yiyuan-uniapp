@@ -1,15 +1,76 @@
 <template>
 	<view>
 		<search :hotList="hotList" @input="input" @change="change"></search>
-		<u-scroll-list>
+		<u-scroll-list style="margin-top: 48rpx;">
 			<view class="scroll">
-				<view class="scroll_item soar">
-
+				<view class="scroll_list soar"
+					:style="{background:'url('+soarBgImg+') center no-repeat;background-size:100% 100%'}">
+					<view class="header">
+						<image src="/static/images/icon/soar.png" mode=""></image>
+						<view class="title">飙升榜</view>
+					</view>
+					<view class="scroll_list_item">
+						<view class="scroll_list_item_item" v-for="(item,index) in 5" :key="index">
+							<view class="product">
+								<view class="product_image">
+									<image src="@/static/images/product/p5.png" mode="aspectFit"></image>
+								</view>
+								<view class="product_title">
+									乔丹同款绿色时髦凉衬衫
+								</view>
+								<view class="tags">
+									<view class="tag">
+										新
+									</view>
+								</view>
+							</view>
+							<view class="data">
+								<view class="data_ranking">
+									230w+
+								</view>
+								<view class="data_sort">
+									<image src="@/static/images/icon/asc.png" mode=""></image>
+								</view>
+							</view>
+						</view>
+						<!-- <view class="scroll_btn">
+							查看完整榜单
+						</view> -->
+					</view>
 				</view>
 			</view>
 			<view class="scroll">
-				<view class="scroll_item soar">
-
+				<view class="scroll_list soar"
+					:style="{background:'url('+soarBgImg+') center no-repeat;background-size:100% 100%'}">
+					<view class="header">
+						<image src="/static/images/icon/soar.png" mode=""></image>
+						<view class="title">排行榜</view>
+					</view>
+					<view class="scroll_list_item">
+						<view class="scroll_list_item_item" v-for="(item,index) in 5" :key="index">
+							<view class="product">
+								<view class="product_image">
+									<image src="@/static/images/product/p5.png" mode="aspectFit"></image>
+								</view>
+								<view class="product_title">
+									乔丹同款绿色时髦凉衬衫
+								</view>
+								<view class="tags">
+									<view class="tag">
+										新
+									</view>
+								</view>
+							</view>
+							<view class="data">
+								<view class="data_ranking">
+									230w+
+								</view>
+								<view class="data_sort">
+									<image src="@/static/images/icon/asc.png" mode=""></image>
+								</view>
+							</view>
+						</view>
+					</view>
 				</view>
 			</view>
 		</u-scroll-list>
@@ -36,6 +97,7 @@
 				}, {
 					thumb: "https://cdn.uviewui.com/uview/goods/5.jpg"
 				}],
+				soarBgImg: "/static/images/common/soar.png",
 				hotList: ['白酒', '苹果醋', '红酒', '笔记本', '洗衣液', '平板电脑', '电视机'], //热门搜索
 				blurList: ['我的', '我要红包', '我要开红包', '我的红包', '我的世界'], //模糊搜索内容
 			};
@@ -55,14 +117,127 @@
 
 <style lang="scss" scoped>
 	.scroll {
-		.soar {
-			background: url('/static/images/common/soar.png') top no-repeat;
-			// background-image: url('/static/images/common/soar.png');
+		margin-right: 16rpx;
+		&_btn{
+			width: 576rpx;
+			height: 72rpx;
+			color: #000;
+			font-family: PingFang SC;
+			font-size: 48rpx;
+			font-weight: 400;
+			border-radius: 16rpx;
+			border: 1px solid #DFE4DE;
 		}
-
-		&_item {
+		&_list {
 			width: 664rpx;
 			height: 672rpx;
+			padding: 20rpx;
+
+			.header {
+				display: flex;
+				align-items: flex-end;
+
+				image {
+					margin-bottom: 5rpx;
+					width: 34rpx;
+					height: 34rpx;
+					margin-right: 8rpx;
+					vertical-align: bottom;
+				}
+
+				.title {
+					vertical-align: middle;
+					color: #F94E05;
+					text-align: center;
+					font-family: YouSheBiaoTiHei;
+					font-size: 20px;
+					font-weight: 400;
+				}
+			}
+
+			&_item {
+				width: 620rpx;
+				// height: 576rpx;
+				border-radius: 6px;
+				background: #FFF;
+
+				&_item {
+					display: flex;
+					justify-content: space-around;
+					padding: 8rpx 0;
+
+					.product {
+						display: flex;
+						align-items: center;
+
+						&_image {
+							width: 96rpx;
+							height: 96rpx;
+							align-items: flex-start;
+							gap: 2.67px;
+							border-radius: 3.203px;
+							border: 0.8px solid var(--B7, #F2F4F7);
+							background: var(--A4, #FFF);
+
+							image {
+								width: 100%;
+								height: 100%;
+							}
+						}
+
+						&_title {
+							color: #333;
+							font-family: PingFang SC;
+							font-size: 12px;
+							font-style: normal;
+							font-weight: 400;
+						}
+
+						.tags {
+							.tag {
+								width: 32rpx;
+								height: 32rpx;
+								text-align: center;
+								line-height: 32rpx;
+								border-radius: 8rpx;
+								font-family: PingFang SC;
+								font-size: 20rpx;
+								font-weight: 400;
+								color: #FFF;
+								background: linear-gradient(180deg, #EC6351 0%, #EB4E53 100%);
+							}
+						}
+					}
+
+					.data {
+						display: flex;
+						align-items: center;
+
+						&_ranking {
+							color: #939692;
+							text-align: right;
+							font-family: PingFang SC;
+							font-size: 24rpx;
+							font-style: normal;
+							font-weight: 500;
+						}
+
+						&_sort {
+							width: 20rpx;
+							height: 20rpx;
+
+							image {
+								width: 100%;
+								height: 100%;
+							}
+						}
+					}
+				}
+			}
 		}
+	}
+
+	/deep/ .u-scroll-list {
+		margin: 0 20rpx;
 	}
 </style>
