@@ -17,18 +17,50 @@
 				"enablePullDownRefresh": true
 				// #endif
 			}
-		}
-	    ,{
-            "path" : "pages/search/index",
-            "style" :                                                                                    
-            {
+		}, {
+			"path": "pages/search/index",
+			"style": {
 				"navigationStyle": "custom",
-                "navigationBarTitleText": "搜索",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-    ],
+				"navigationBarTitleText": "搜索",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/search/list/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "搜索结果",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/search/list/list",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "榜单",
+				"enablePullDownRefresh": false
+			}
+
+		},
+		{
+			"path": "pages/marketing/flashSale",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "限时抢购",
+				"enablePullDownRefresh": false
+			}
+		
+		},
+		{
+			"path": "pages/marketing/billionSubsidy",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "百亿补贴",
+				"enablePullDownRefresh": false
+			}
+		
+		}
+	],
 	"subPackages": [{
 		"root": "pages-user",
 		"pages": [{

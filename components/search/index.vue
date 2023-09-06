@@ -3,8 +3,8 @@
 		<view class="search-box">
 			<view class="search" :style="{'padding-top':$uniHeight().top+50+'px'}">
 
-				<u-navbar leftIconColor="#000000" background="transparent" leftIconSize="25px" safeAreaInsetTop>
-					<view class="u-nav-slot search-header" slot="center">
+				<u-navbar leftIconColor="#000000" background="transparent" leftIconSize="25px" safeAreaInsetTop :autoBack="true" >
+					<view class="u-nav-slot search-header" slot="center" >
 
 						<image class="search-img" :src="searchImg"></image>
 						<input class="search-input" :placeholder="placeholder" type="text" v-model.trim="searchText"

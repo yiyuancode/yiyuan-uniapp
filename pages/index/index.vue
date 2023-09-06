@@ -542,9 +542,8 @@
 						color: #000;
 						text-align: center;
 						font-family: YouSheBiaoTiHei;
-						font-size: 25px;
+						font-size: 50rpx;
 						font-style: normal;
-						font-weight: 800;
 						line-height: normal;
 						transform: rotate(-1.285deg);
 					}
