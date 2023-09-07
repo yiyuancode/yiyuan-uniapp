@@ -65,7 +65,7 @@
 					</view>
 					<view class="product">
 
-						<view class="subsidy_product_item" v-for="(item,index) in subsidy" :key="index">
+						<view class="subsidy_product_item" v-for="(item,index) in subsidy" :key="index" @click="billionSubsidy">
 							<image :src="item.image" class="product_image" mode="aspectFit"></image>
 							<view class="subsidy_product_item_subsidy">
 								<view class="">
@@ -101,7 +101,8 @@
 							<view class="header_title">
 								限时降价
 							</view>
-							<view class="subsidy_product_item" v-for="(item,index) in priceReduction" :key="index">
+							<view class="subsidy_product_item" v-for="(item,index) in priceReduction" :key="index"
+								@click="flashSale">
 								<image :src="item.image" class="product_image" mode="aspectFit"></image>
 								<view class="subsidy_product_item_subsidy">
 									<view class="">
@@ -358,9 +359,20 @@
 			this.getList();
 		},
 
-	
-		methods: {
 
+		methods: {
+			// 限时抢购
+			flashSale() {
+				uni.navigateTo({
+					url: '/pages/marketing/flashSale'
+				})
+			},
+			// 百亿补贴
+			billionSubsidy(){
+				uni.navigateTo({
+					url:'/pages/marketing/billionSubsidy'
+				})
+			},
 			getList() {
 				if (this.list.length < data.list.length) {
 					uni.showLoading({
@@ -370,7 +382,7 @@
 						//this.$refs.wfp.externalRefrensh(); //清理掉原有加载数据 避免追加
 						this.end = this.page * 10; //假数据比较少 , 可以调小一点
 						this.list = this.list.concat(data.list.slice(this.start, this.end));
-			
+
 						this.start = this.end;
 						uni.hideLoading();
 					}, 1000)
@@ -494,7 +506,7 @@
 
 					&_item {
 						border-left: 2rpx solid #C3EC99;
-						
+
 						image {
 							width: 24rpx;
 							height: 24rpx;
@@ -611,7 +623,7 @@
 					padding: 16rpx 0 8rpx 20rpx;
 					color: #000;
 					font-family: YouSheBiaoTiHei;
-				
+
 					font-size: 36rpx;
 				}
 
@@ -758,7 +770,7 @@
 				background-color: #F2F4F7 !important;
 				width: 100% !important;
 			}
-			
+
 			.waterfall {
 				display: flex;
 				flex-wrap: wrap;
@@ -791,8 +803,9 @@
 
 		}
 	}
+
 	/deep/ .u-tabs__wrapper__nav__item__text {
-		color:  #0F1E0A !important;
+		color: #0F1E0A !important;
 		text-align: center;
 		font-family: PingFang SC;
 		// transform: none !important;
@@ -800,5 +813,4 @@
 		// font-style: normal;
 		// font-weight: 400 !important;
 	}
-
 </style>

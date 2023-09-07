@@ -52,7 +52,10 @@
 									乔丹同款绿色时髦凉爽T恤
 								</view>
 								<view class="product_item_content_box_purchased">
-									近7天有899人购买
+									<u-avatar-group :urls="urls"  size="20" gap="0.4"></u-avatar-group>
+									<view class="days">
+										近7天有899人购买
+									</view>
 								</view>
 							</view>
 							<view class="product_item_content_box_bottom">
@@ -81,6 +84,15 @@
 	export default {
 		data() {
 			return {
+				urls: [
+					'https://cdn.uviewui.com/uview/album/1.jpg',
+					'https://cdn.uviewui.com/uview/album/2.jpg',
+					'https://cdn.uviewui.com/uview/album/3.jpg',
+					'https://cdn.uviewui.com/uview/album/4.jpg',
+					'https://cdn.uviewui.com/uview/album/7.jpg',
+					'https://cdn.uviewui.com/uview/album/6.jpg',
+					'https://cdn.uviewui.com/uview/album/5.jpg'
+				],
 				list4: [{
 					name: '飙升榜'
 				}, {
@@ -100,6 +112,7 @@
 <style lang="scss" scoped>
 	.page-main {
 		background: linear-gradient(180deg, #C6FF7E 0%, #FFF 39.2%, #F2F4F7 41.75%);
+
 		.u-nav-slot {
 			image {
 				width: 24px;
@@ -174,16 +187,19 @@
 					&_image {
 						position: relative;
 						padding-right: 24rpx;
-						.sort{
+
+						.sort {
 							position: absolute;
 							top: 0;
 							left: 0;
-							image{
+
+							image {
 								width: 44.429rpx;
 								height: 44rpx;
 								flex-shrink: 0;
 							}
-							.num{
+
+							.num {
 								position: absolute;
 								top: 0;
 								left: 15rpx;
@@ -192,8 +208,9 @@
 								font-size: 28.143rpx;
 								font-weight: 400;
 							}
-							
+
 						}
+
 						.product_image {
 							width: 220rpx;
 							height: 220rpx;
@@ -219,6 +236,7 @@
 							}
 
 							&_purchased {
+								display: flex;
 								margin-top: 14rpx;
 								color: #939692;
 								font-family: PingFang SC;
@@ -226,6 +244,9 @@
 								text-align: right;
 								font-style: normal;
 								font-weight: 400;
+								.days {
+									padding-left: 16rpx;
+								}
 							}
 
 							&_bottom {
@@ -259,7 +280,7 @@
 								}
 
 								.buy_btn {
-									margin-right: -45%;
+									margin-right: -34%;
 									width: 160rpx;
 									height: 64rpx;
 									background-color: #F94E05;
