@@ -144,7 +144,6 @@
 		.page-content {
 			margin-top: 26rpx;
 			width: 100%;
-			height: 502px;
 			flex-shrink: 0;
 			border-radius: 16px;
 			border: 1px solid rgba(255, 255, 255, 0.56);

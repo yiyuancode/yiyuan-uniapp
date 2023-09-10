@@ -83,7 +83,7 @@
 				// this.calculateColumn(v, false);
 			},
 			flowList: function(v) {
-				// console.log(v,"++++++++++")
+				console.log(v,"++++++++++")
 				this.internalDataList = Object.assign(this.internalDataList, v);
 				if (this.internalDataList.length > 0) {
 					this.getPushContainer();
@@ -104,6 +104,7 @@
 			this.calculateColumn(this.colunmNumber, true);
 		},
 		mounted() {
+			console.log(this.colunmList)
 			if (this.internalDataList.length > 0) {
 				this.colunmList[0].list.push(this.internalDataList[0]);
 				let shiftObj = this.internalDataList.shift();

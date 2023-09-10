@@ -59,6 +59,15 @@
 				"enablePullDownRefresh": false
 			}
 		
+		},
+		{
+			"path": "pages/shop/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "店铺首页",
+				"enablePullDownRefresh": false
+			}
+		
 		}
 	],
 	"subPackages": [{
