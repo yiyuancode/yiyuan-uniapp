@@ -35,6 +35,7 @@
 
 				</view>
 				<u-line></u-line>
+			
 				<view class="product">
 					<view class="product_item" v-for="(item,index) in 10" :key="index">
 						<view class="product_item_image">
@@ -74,6 +75,7 @@
 						</view>
 					</view>
 				</view>
+		
 			</view>
 		</view>
 
@@ -300,6 +302,7 @@
 				}
 
 			}
+	
 		}
 
 	}

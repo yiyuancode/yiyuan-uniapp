@@ -61,7 +61,7 @@
 		
 		},
 		{
-			"path": "pages/shop/index",
+			"path": "pages/shop/index/index",
 			"style": {
 				"navigationStyle": "custom",
 				"navigationBarTitleText": "店铺首页",
