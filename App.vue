@@ -1,6 +1,7 @@
 <script>
 	export default {
 		onLaunch: function() {
+	
 			console.log('App Launch')
 			setTimeout(() => {
 				uni.loadFontFace({

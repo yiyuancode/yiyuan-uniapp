@@ -1,7 +1,36 @@
 <template>
 	<view class="category">
-		<view class="category_list">
-
+		<!-- 左侧导航 -->
+		<view class="category_left">
+			<scroll-view :scroll-top="scrollTop" scroll-y="true" class="scroll-Y" @scrolltoupper="upper"
+				@scrolltolower="lower" @scroll="scroll">
+				<view v-for="(item,index) in categoryList" :key="index"
+					:class="item.cid==categoryId?'row active':'row '" @click="showCategory(item)">
+					{{ item.main_name }}
+				</view>
+			</scroll-view>
+		</view>
+		<view class="category_right">
+			<scroll-view :scroll-top="scrollTop" scroll-y="true" class="scroll-Y" @scrolltoupper="upper"
+				@scrolltolower="lower" @scroll="scroll">
+				<view v-for="(item,index) in categoryList" :key="index" @click="showCategory(item)">
+					<view class="" v-for="(category,idx) in item.data" :key="idx" v-show="item.cid==categoryId">
+						<view class="name">
+							{{category.next_name}}
+						</view>
+						<view class="product">
+							<view class="item" v-for="(product,p) in category.info" :key="p">
+								<view class="product_image">
+									<image class="image" :src="product.imgurl" mode="aspectFit"></image>
+								</view>
+								<view class="title">
+									IPhone 14 Pro Max
+								</view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</scroll-view>
 		</view>
 	</view>
 </template>
@@ -253,6 +282,1935 @@
 					},
 					{
 						cid: 2,
+						main_name: '女装',
+						data: [{
+								next_name: '裙装',
+								info: [{
+										son_name: '连衣裙',
+										imgurl: 'http://img.haodanku.com/89937f347f81f5c5539f9da9b35b7a62-600'
+									},
+									{
+										son_name: '雪纺裙',
+										imgurl: 'http://img.haodanku.com/3deb054da8cb2f4b1b5a07ab530e7e41-600'
+									},
+									{
+										son_name: '半身裙',
+										imgurl: 'http://img.haodanku.com/b68bc66ab1a81db336110b7c1196b5a9-600'
+									},
+									{
+										son_name: '印花裙',
+										imgurl: 'http://img.haodanku.com/3ce7249ba847286308c82bed97f7817d-600'
+									},
+									{
+										son_name: '吊带裙',
+										imgurl: 'http://img.haodanku.com/0716abc13652355b130dc3c83d39a7dc-600'
+									},
+									{
+										son_name: '纯色裙',
+										imgurl: 'http://img.haodanku.com/de464503dab5d20a5d6505573f1624bd-600'
+									}
+								]
+							},
+							{
+								next_name: '套装',
+								info: [{
+										son_name: '两件套',
+										imgurl: 'http://img.haodanku.com/dcabee1a81b9c631bbc903597fad52a2-600'
+									},
+									{
+										son_name: '夏季套装',
+										imgurl: 'http://img.haodanku.com/fcf45b47afad11fe7ac05c179de174c1-600'
+									},
+									{
+										son_name: '大码女装',
+										imgurl: 'http://img.haodanku.com/005f603379aa285718b3f7c99c1ca88a-600'
+									},
+									{
+										son_name: '妈妈装',
+										imgurl: 'http://img.haodanku.com/cf445d5d9ddad49a38c0e542be22b565-600'
+									},
+									{
+										son_name: '婚纱',
+										imgurl: 'http://img.haodanku.com/d40c79df78c0a0cfbbb05605891950db-600'
+									},
+									{
+										son_name: '小香风',
+										imgurl: 'http://img.haodanku.com/2907a1a4faf78674c4ff422ce9ca16eb-600'
+									},
+									{
+										son_name: '运动套装',
+										imgurl: 'http://img.haodanku.com/97340565f9420afafc7a37966095da75-600'
+									},
+									{
+										son_name: '雪纺套装',
+										imgurl: 'http://img.haodanku.com/233b900fde6dc193a0c4b8886d121002-600'
+									}
+								]
+							},
+							{
+								next_name: 'T恤',
+								info: [{
+										son_name: 'T恤',
+										imgurl: 'http://img.haodanku.com/397fc31d9f3abdef5177ab1ec82a254c-600'
+									},
+									{
+										son_name: '一字肩',
+										imgurl: 'http://img.haodanku.com/f4ca5e271d74fd5c29d051c7b1106f04-600'
+									},
+									{
+										son_name: '印花雪纺',
+										imgurl: 'http://img.haodanku.com/60e743e4a53b475f2b01a606b61ab217-600'
+									},
+									{
+										son_name: '吊带T恤',
+										imgurl: 'http://img.haodanku.com/7aad5119d9e8d49c74ab97e31944ba63-600'
+									},
+									{
+										son_name: '娃娃衫',
+										imgurl: 'http://img.haodanku.com/9a596fb1d0c7008cdfad30e5562b3b3f-600'
+									},
+									{
+										son_name: '情侣T恤',
+										imgurl: 'http://img.haodanku.com/9880baf8c939776a65a64c6ec6b37621-600'
+									},
+									{
+										son_name: '白衬衣',
+										imgurl: 'http://img.haodanku.com/1c60edccb596c5f3496d883be75869c5-600'
+									},
+									{
+										son_name: '短袖T恤',
+										imgurl: 'http://img.haodanku.com/81ee9efd599bcfb76668e0ab3d08df6d-600'
+									},
+									{
+										son_name: '纯色T恤',
+										imgurl: 'http://img.haodanku.com/44d365c3c459a4a04185f1fa947e7353-600'
+									},
+									{
+										son_name: '蕾丝拼接',
+										imgurl: 'http://img.haodanku.com/f77f58f4f0f67b4c3cd830954354462a-600'
+									},
+									{
+										son_name: '蕾丝衫',
+										imgurl: 'http://img.haodanku.com/fe7c5357cb05b2128bf95c014c402092-600'
+									},
+									{
+										son_name: '防晒衫',
+										imgurl: 'http://img.haodanku.com/99d63b5ef04f0599ef94a71b1a247fef-600'
+									},
+									{
+										son_name: '露肩上衣',
+										imgurl: 'http://img.haodanku.com/a39d41be029747367e3889ea195043b1-600'
+									},
+									{
+										son_name: '长袖T恤',
+										imgurl: 'http://img.haodanku.com/d0ae23ec9b6d46e16bd2e0e924b2bd83-600'
+									}
+								]
+							},
+							{
+								next_name: '内搭',
+								info: [{
+										son_name: '喇叭袖',
+										imgurl: 'http://img.haodanku.com/6d8739d3e2aba86cfe98c3d8c631cb18-600'
+									},
+									{
+										son_name: '开衫',
+										imgurl: 'http://img.haodanku.com/051f12a2106ca222a4a651ef556419b2-600'
+									},
+									{
+										son_name: '打底毛衣',
+										imgurl: 'http://img.haodanku.com/d93f276b06e1aa4d9f5a7c4718ca675d-600'
+									},
+									{
+										son_name: '毛衣',
+										imgurl: 'http://img.haodanku.com/5ae75e2e972aec9126ac7ef6e44bd279-600'
+									},
+									{
+										son_name: '针织衫',
+										imgurl: 'http://img.haodanku.com/d989f5485e411a23b53d903787e9e8ae-600'
+									},
+									{
+										son_name: '高领',
+										imgurl: 'http://img.haodanku.com/226f1370ec92bd4804621851e4a45cd4-600'
+									}
+								]
+							},
+							{
+								next_name: '外套',
+								info: [{
+										son_name: '卫衣',
+										imgurl: 'http://img.haodanku.com/2329f94b4030aa27e819e159d64969c4-600'
+									},
+									{
+										son_name: '夹克',
+										imgurl: 'http://img.haodanku.com/ab499244178c525025d8a3e1ff4ed36e-600'
+									},
+									{
+										son_name: '棉服',
+										imgurl: 'http://img.haodanku.com/6d3898d409060a49ebc6a80c150d15b2-600'
+									},
+									{
+										son_name: '毛呢',
+										imgurl: 'http://img.haodanku.com/5b397df30169b79af64c569606b7e0af-600'
+									},
+									{
+										son_name: '牛仔',
+										imgurl: 'http://img.haodanku.com/38a001153e2f30933f3cae16f2b2a171-600'
+									},
+									{
+										son_name: '皮衣',
+										imgurl: 'http://img.haodanku.com/78c7fcecea8eaf4b329002b3308b3545-600'
+									},
+									{
+										son_name: '短外套',
+										imgurl: 'http://img.haodanku.com/26a08a44cce036a5cf49a3322e4cbf37-600'
+									},
+									{
+										son_name: '羽绒',
+										imgurl: 'http://img.haodanku.com/8b319845442d1ca43866388b3cdc9008-600'
+									},
+									{
+										son_name: '西装',
+										imgurl: 'http://img.haodanku.com/8760d56b968fff5f4542cba45398f911-600'
+									},
+									{
+										son_name: '风衣',
+										imgurl: 'http://img.haodanku.com/fce2eacae26fdd2be1e56319570db29e-600'
+									},
+									{
+										son_name: '马甲',
+										imgurl: 'http://img.haodanku.com/72c6ef4b40de18dddb9ae5dd38a9a051-600'
+									}
+								]
+							},
+							{
+								next_name: '裤子',
+								info: [{
+										son_name: '休闲裤',
+										imgurl: 'http://img.haodanku.com/047d30183d119f6805767a2649e05047-600'
+									},
+									{
+										son_name: '哈伦裤',
+										imgurl: 'http://img.haodanku.com/a1711789779fbd5c921fe1672619879f-600'
+									},
+									{
+										son_name: '棉麻裤',
+										imgurl: 'http://img.haodanku.com/a3e99f528f0cf163b96b0f6090226364-600'
+									},
+									{
+										son_name: '牛仔裤',
+										imgurl: 'http://img.haodanku.com/d1c7bf2b3a3d52047bf2bba87527ce2c-600'
+									},
+									{
+										son_name: '短裤',
+										imgurl: 'http://img.haodanku.com/d370086ea3d2a9c4ba569cfb8daf0d8e-600'
+									},
+									{
+										son_name: '破洞牛仔裤',
+										imgurl: 'http://img.haodanku.com/82462d589beb34111e9fccf66c170c7d-600'
+									},
+									{
+										son_name: '裤子',
+										imgurl: 'http://img.haodanku.com/049ea9c85a7b917eb9f0844df3910d4b-600'
+									},
+									{
+										son_name: '阔腿裤',
+										imgurl: 'http://img.haodanku.com/d59ec97908e5f2a3af232cbb23c54f31-600'
+									}
+								]
+							}
+						]
+					},
+					{
+						cid: 3,
+						main_name: '女装',
+						data: [{
+								next_name: '裙装',
+								info: [{
+										son_name: '连衣裙',
+										imgurl: 'http://img.haodanku.com/89937f347f81f5c5539f9da9b35b7a62-600'
+									},
+									{
+										son_name: '雪纺裙',
+										imgurl: 'http://img.haodanku.com/3deb054da8cb2f4b1b5a07ab530e7e41-600'
+									},
+									{
+										son_name: '半身裙',
+										imgurl: 'http://img.haodanku.com/b68bc66ab1a81db336110b7c1196b5a9-600'
+									},
+									{
+										son_name: '印花裙',
+										imgurl: 'http://img.haodanku.com/3ce7249ba847286308c82bed97f7817d-600'
+									},
+									{
+										son_name: '吊带裙',
+										imgurl: 'http://img.haodanku.com/0716abc13652355b130dc3c83d39a7dc-600'
+									},
+									{
+										son_name: '纯色裙',
+										imgurl: 'http://img.haodanku.com/de464503dab5d20a5d6505573f1624bd-600'
+									}
+								]
+							},
+							{
+								next_name: '套装',
+								info: [{
+										son_name: '两件套',
+										imgurl: 'http://img.haodanku.com/dcabee1a81b9c631bbc903597fad52a2-600'
+									},
+									{
+										son_name: '夏季套装',
+										imgurl: 'http://img.haodanku.com/fcf45b47afad11fe7ac05c179de174c1-600'
+									},
+									{
+										son_name: '大码女装',
+										imgurl: 'http://img.haodanku.com/005f603379aa285718b3f7c99c1ca88a-600'
+									},
+									{
+										son_name: '妈妈装',
+										imgurl: 'http://img.haodanku.com/cf445d5d9ddad49a38c0e542be22b565-600'
+									},
+									{
+										son_name: '婚纱',
+										imgurl: 'http://img.haodanku.com/d40c79df78c0a0cfbbb05605891950db-600'
+									},
+									{
+										son_name: '小香风',
+										imgurl: 'http://img.haodanku.com/2907a1a4faf78674c4ff422ce9ca16eb-600'
+									},
+									{
+										son_name: '运动套装',
+										imgurl: 'http://img.haodanku.com/97340565f9420afafc7a37966095da75-600'
+									},
+									{
+										son_name: '雪纺套装',
+										imgurl: 'http://img.haodanku.com/233b900fde6dc193a0c4b8886d121002-600'
+									}
+								]
+							},
+							{
+								next_name: 'T恤',
+								info: [{
+										son_name: 'T恤',
+										imgurl: 'http://img.haodanku.com/397fc31d9f3abdef5177ab1ec82a254c-600'
+									},
+									{
+										son_name: '一字肩',
+										imgurl: 'http://img.haodanku.com/f4ca5e271d74fd5c29d051c7b1106f04-600'
+									},
+									{
+										son_name: '印花雪纺',
+										imgurl: 'http://img.haodanku.com/60e743e4a53b475f2b01a606b61ab217-600'
+									},
+									{
+										son_name: '吊带T恤',
+										imgurl: 'http://img.haodanku.com/7aad5119d9e8d49c74ab97e31944ba63-600'
+									},
+									{
+										son_name: '娃娃衫',
+										imgurl: 'http://img.haodanku.com/9a596fb1d0c7008cdfad30e5562b3b3f-600'
+									},
+									{
+										son_name: '情侣T恤',
+										imgurl: 'http://img.haodanku.com/9880baf8c939776a65a64c6ec6b37621-600'
+									},
+									{
+										son_name: '白衬衣',
+										imgurl: 'http://img.haodanku.com/1c60edccb596c5f3496d883be75869c5-600'
+									},
+									{
+										son_name: '短袖T恤',
+										imgurl: 'http://img.haodanku.com/81ee9efd599bcfb76668e0ab3d08df6d-600'
+									},
+									{
+										son_name: '纯色T恤',
+										imgurl: 'http://img.haodanku.com/44d365c3c459a4a04185f1fa947e7353-600'
+									},
+									{
+										son_name: '蕾丝拼接',
+										imgurl: 'http://img.haodanku.com/f77f58f4f0f67b4c3cd830954354462a-600'
+									},
+									{
+										son_name: '蕾丝衫',
+										imgurl: 'http://img.haodanku.com/fe7c5357cb05b2128bf95c014c402092-600'
+									},
+									{
+										son_name: '防晒衫',
+										imgurl: 'http://img.haodanku.com/99d63b5ef04f0599ef94a71b1a247fef-600'
+									},
+									{
+										son_name: '露肩上衣',
+										imgurl: 'http://img.haodanku.com/a39d41be029747367e3889ea195043b1-600'
+									},
+									{
+										son_name: '长袖T恤',
+										imgurl: 'http://img.haodanku.com/d0ae23ec9b6d46e16bd2e0e924b2bd83-600'
+									}
+								]
+							},
+							{
+								next_name: '内搭',
+								info: [{
+										son_name: '喇叭袖',
+										imgurl: 'http://img.haodanku.com/6d8739d3e2aba86cfe98c3d8c631cb18-600'
+									},
+									{
+										son_name: '开衫',
+										imgurl: 'http://img.haodanku.com/051f12a2106ca222a4a651ef556419b2-600'
+									},
+									{
+										son_name: '打底毛衣',
+										imgurl: 'http://img.haodanku.com/d93f276b06e1aa4d9f5a7c4718ca675d-600'
+									},
+									{
+										son_name: '毛衣',
+										imgurl: 'http://img.haodanku.com/5ae75e2e972aec9126ac7ef6e44bd279-600'
+									},
+									{
+										son_name: '针织衫',
+										imgurl: 'http://img.haodanku.com/d989f5485e411a23b53d903787e9e8ae-600'
+									},
+									{
+										son_name: '高领',
+										imgurl: 'http://img.haodanku.com/226f1370ec92bd4804621851e4a45cd4-600'
+									}
+								]
+							},
+							{
+								next_name: '外套',
+								info: [{
+										son_name: '卫衣',
+										imgurl: 'http://img.haodanku.com/2329f94b4030aa27e819e159d64969c4-600'
+									},
+									{
+										son_name: '夹克',
+										imgurl: 'http://img.haodanku.com/ab499244178c525025d8a3e1ff4ed36e-600'
+									},
+									{
+										son_name: '棉服',
+										imgurl: 'http://img.haodanku.com/6d3898d409060a49ebc6a80c150d15b2-600'
+									},
+									{
+										son_name: '毛呢',
+										imgurl: 'http://img.haodanku.com/5b397df30169b79af64c569606b7e0af-600'
+									},
+									{
+										son_name: '牛仔',
+										imgurl: 'http://img.haodanku.com/38a001153e2f30933f3cae16f2b2a171-600'
+									},
+									{
+										son_name: '皮衣',
+										imgurl: 'http://img.haodanku.com/78c7fcecea8eaf4b329002b3308b3545-600'
+									},
+									{
+										son_name: '短外套',
+										imgurl: 'http://img.haodanku.com/26a08a44cce036a5cf49a3322e4cbf37-600'
+									},
+									{
+										son_name: '羽绒',
+										imgurl: 'http://img.haodanku.com/8b319845442d1ca43866388b3cdc9008-600'
+									},
+									{
+										son_name: '西装',
+										imgurl: 'http://img.haodanku.com/8760d56b968fff5f4542cba45398f911-600'
+									},
+									{
+										son_name: '风衣',
+										imgurl: 'http://img.haodanku.com/fce2eacae26fdd2be1e56319570db29e-600'
+									},
+									{
+										son_name: '马甲',
+										imgurl: 'http://img.haodanku.com/72c6ef4b40de18dddb9ae5dd38a9a051-600'
+									}
+								]
+							},
+							{
+								next_name: '裤子',
+								info: [{
+										son_name: '休闲裤',
+										imgurl: 'http://img.haodanku.com/047d30183d119f6805767a2649e05047-600'
+									},
+									{
+										son_name: '哈伦裤',
+										imgurl: 'http://img.haodanku.com/a1711789779fbd5c921fe1672619879f-600'
+									},
+									{
+										son_name: '棉麻裤',
+										imgurl: 'http://img.haodanku.com/a3e99f528f0cf163b96b0f6090226364-600'
+									},
+									{
+										son_name: '牛仔裤',
+										imgurl: 'http://img.haodanku.com/d1c7bf2b3a3d52047bf2bba87527ce2c-600'
+									},
+									{
+										son_name: '短裤',
+										imgurl: 'http://img.haodanku.com/d370086ea3d2a9c4ba569cfb8daf0d8e-600'
+									},
+									{
+										son_name: '破洞牛仔裤',
+										imgurl: 'http://img.haodanku.com/82462d589beb34111e9fccf66c170c7d-600'
+									},
+									{
+										son_name: '裤子',
+										imgurl: 'http://img.haodanku.com/049ea9c85a7b917eb9f0844df3910d4b-600'
+									},
+									{
+										son_name: '阔腿裤',
+										imgurl: 'http://img.haodanku.com/d59ec97908e5f2a3af232cbb23c54f31-600'
+									}
+								]
+							}
+						]
+					},
+					{
+						cid: 4,
+						main_name: '女装',
+						data: [{
+								next_name: '裙装',
+								info: [{
+										son_name: '连衣裙',
+										imgurl: 'http://img.haodanku.com/89937f347f81f5c5539f9da9b35b7a62-600'
+									},
+									{
+										son_name: '雪纺裙',
+										imgurl: 'http://img.haodanku.com/3deb054da8cb2f4b1b5a07ab530e7e41-600'
+									},
+									{
+										son_name: '半身裙',
+										imgurl: 'http://img.haodanku.com/b68bc66ab1a81db336110b7c1196b5a9-600'
+									},
+									{
+										son_name: '印花裙',
+										imgurl: 'http://img.haodanku.com/3ce7249ba847286308c82bed97f7817d-600'
+									},
+									{
+										son_name: '吊带裙',
+										imgurl: 'http://img.haodanku.com/0716abc13652355b130dc3c83d39a7dc-600'
+									},
+									{
+										son_name: '纯色裙',
+										imgurl: 'http://img.haodanku.com/de464503dab5d20a5d6505573f1624bd-600'
+									}
+								]
+							},
+							{
+								next_name: '套装',
+								info: [{
+										son_name: '两件套',
+										imgurl: 'http://img.haodanku.com/dcabee1a81b9c631bbc903597fad52a2-600'
+									},
+									{
+										son_name: '夏季套装',
+										imgurl: 'http://img.haodanku.com/fcf45b47afad11fe7ac05c179de174c1-600'
+									},
+									{
+										son_name: '大码女装',
+										imgurl: 'http://img.haodanku.com/005f603379aa285718b3f7c99c1ca88a-600'
+									},
+									{
+										son_name: '妈妈装',
+										imgurl: 'http://img.haodanku.com/cf445d5d9ddad49a38c0e542be22b565-600'
+									},
+									{
+										son_name: '婚纱',
+										imgurl: 'http://img.haodanku.com/d40c79df78c0a0cfbbb05605891950db-600'
+									},
+									{
+										son_name: '小香风',
+										imgurl: 'http://img.haodanku.com/2907a1a4faf78674c4ff422ce9ca16eb-600'
+									},
+									{
+										son_name: '运动套装',
+										imgurl: 'http://img.haodanku.com/97340565f9420afafc7a37966095da75-600'
+									},
+									{
+										son_name: '雪纺套装',
+										imgurl: 'http://img.haodanku.com/233b900fde6dc193a0c4b8886d121002-600'
+									}
+								]
+							},
+							{
+								next_name: 'T恤',
+								info: [{
+										son_name: 'T恤',
+										imgurl: 'http://img.haodanku.com/397fc31d9f3abdef5177ab1ec82a254c-600'
+									},
+									{
+										son_name: '一字肩',
+										imgurl: 'http://img.haodanku.com/f4ca5e271d74fd5c29d051c7b1106f04-600'
+									},
+									{
+										son_name: '印花雪纺',
+										imgurl: 'http://img.haodanku.com/60e743e4a53b475f2b01a606b61ab217-600'
+									},
+									{
+										son_name: '吊带T恤',
+										imgurl: 'http://img.haodanku.com/7aad5119d9e8d49c74ab97e31944ba63-600'
+									},
+									{
+										son_name: '娃娃衫',
+										imgurl: 'http://img.haodanku.com/9a596fb1d0c7008cdfad30e5562b3b3f-600'
+									},
+									{
+										son_name: '情侣T恤',
+										imgurl: 'http://img.haodanku.com/9880baf8c939776a65a64c6ec6b37621-600'
+									},
+									{
+										son_name: '白衬衣',
+										imgurl: 'http://img.haodanku.com/1c60edccb596c5f3496d883be75869c5-600'
+									},
+									{
+										son_name: '短袖T恤',
+										imgurl: 'http://img.haodanku.com/81ee9efd599bcfb76668e0ab3d08df6d-600'
+									},
+									{
+										son_name: '纯色T恤',
+										imgurl: 'http://img.haodanku.com/44d365c3c459a4a04185f1fa947e7353-600'
+									},
+									{
+										son_name: '蕾丝拼接',
+										imgurl: 'http://img.haodanku.com/f77f58f4f0f67b4c3cd830954354462a-600'
+									},
+									{
+										son_name: '蕾丝衫',
+										imgurl: 'http://img.haodanku.com/fe7c5357cb05b2128bf95c014c402092-600'
+									},
+									{
+										son_name: '防晒衫',
+										imgurl: 'http://img.haodanku.com/99d63b5ef04f0599ef94a71b1a247fef-600'
+									},
+									{
+										son_name: '露肩上衣',
+										imgurl: 'http://img.haodanku.com/a39d41be029747367e3889ea195043b1-600'
+									},
+									{
+										son_name: '长袖T恤',
+										imgurl: 'http://img.haodanku.com/d0ae23ec9b6d46e16bd2e0e924b2bd83-600'
+									}
+								]
+							},
+							{
+								next_name: '内搭',
+								info: [{
+										son_name: '喇叭袖',
+										imgurl: 'http://img.haodanku.com/6d8739d3e2aba86cfe98c3d8c631cb18-600'
+									},
+									{
+										son_name: '开衫',
+										imgurl: 'http://img.haodanku.com/051f12a2106ca222a4a651ef556419b2-600'
+									},
+									{
+										son_name: '打底毛衣',
+										imgurl: 'http://img.haodanku.com/d93f276b06e1aa4d9f5a7c4718ca675d-600'
+									},
+									{
+										son_name: '毛衣',
+										imgurl: 'http://img.haodanku.com/5ae75e2e972aec9126ac7ef6e44bd279-600'
+									},
+									{
+										son_name: '针织衫',
+										imgurl: 'http://img.haodanku.com/d989f5485e411a23b53d903787e9e8ae-600'
+									},
+									{
+										son_name: '高领',
+										imgurl: 'http://img.haodanku.com/226f1370ec92bd4804621851e4a45cd4-600'
+									}
+								]
+							},
+							{
+								next_name: '外套',
+								info: [{
+										son_name: '卫衣',
+										imgurl: 'http://img.haodanku.com/2329f94b4030aa27e819e159d64969c4-600'
+									},
+									{
+										son_name: '夹克',
+										imgurl: 'http://img.haodanku.com/ab499244178c525025d8a3e1ff4ed36e-600'
+									},
+									{
+										son_name: '棉服',
+										imgurl: 'http://img.haodanku.com/6d3898d409060a49ebc6a80c150d15b2-600'
+									},
+									{
+										son_name: '毛呢',
+										imgurl: 'http://img.haodanku.com/5b397df30169b79af64c569606b7e0af-600'
+									},
+									{
+										son_name: '牛仔',
+										imgurl: 'http://img.haodanku.com/38a001153e2f30933f3cae16f2b2a171-600'
+									},
+									{
+										son_name: '皮衣',
+										imgurl: 'http://img.haodanku.com/78c7fcecea8eaf4b329002b3308b3545-600'
+									},
+									{
+										son_name: '短外套',
+										imgurl: 'http://img.haodanku.com/26a08a44cce036a5cf49a3322e4cbf37-600'
+									},
+									{
+										son_name: '羽绒',
+										imgurl: 'http://img.haodanku.com/8b319845442d1ca43866388b3cdc9008-600'
+									},
+									{
+										son_name: '西装',
+										imgurl: 'http://img.haodanku.com/8760d56b968fff5f4542cba45398f911-600'
+									},
+									{
+										son_name: '风衣',
+										imgurl: 'http://img.haodanku.com/fce2eacae26fdd2be1e56319570db29e-600'
+									},
+									{
+										son_name: '马甲',
+										imgurl: 'http://img.haodanku.com/72c6ef4b40de18dddb9ae5dd38a9a051-600'
+									}
+								]
+							},
+							{
+								next_name: '裤子',
+								info: [{
+										son_name: '休闲裤',
+										imgurl: 'http://img.haodanku.com/047d30183d119f6805767a2649e05047-600'
+									},
+									{
+										son_name: '哈伦裤',
+										imgurl: 'http://img.haodanku.com/a1711789779fbd5c921fe1672619879f-600'
+									},
+									{
+										son_name: '棉麻裤',
+										imgurl: 'http://img.haodanku.com/a3e99f528f0cf163b96b0f6090226364-600'
+									},
+									{
+										son_name: '牛仔裤',
+										imgurl: 'http://img.haodanku.com/d1c7bf2b3a3d52047bf2bba87527ce2c-600'
+									},
+									{
+										son_name: '短裤',
+										imgurl: 'http://img.haodanku.com/d370086ea3d2a9c4ba569cfb8daf0d8e-600'
+									},
+									{
+										son_name: '破洞牛仔裤',
+										imgurl: 'http://img.haodanku.com/82462d589beb34111e9fccf66c170c7d-600'
+									},
+									{
+										son_name: '裤子',
+										imgurl: 'http://img.haodanku.com/049ea9c85a7b917eb9f0844df3910d4b-600'
+									},
+									{
+										son_name: '阔腿裤',
+										imgurl: 'http://img.haodanku.com/d59ec97908e5f2a3af232cbb23c54f31-600'
+									}
+								]
+							}
+						]
+					},
+					{
+						cid: 5,
+						main_name: '女装',
+						data: [{
+								next_name: '裙装',
+								info: [{
+										son_name: '连衣裙',
+										imgurl: 'http://img.haodanku.com/89937f347f81f5c5539f9da9b35b7a62-600'
+									},
+									{
+										son_name: '雪纺裙',
+										imgurl: 'http://img.haodanku.com/3deb054da8cb2f4b1b5a07ab530e7e41-600'
+									},
+									{
+										son_name: '半身裙',
+										imgurl: 'http://img.haodanku.com/b68bc66ab1a81db336110b7c1196b5a9-600'
+									},
+									{
+										son_name: '印花裙',
+										imgurl: 'http://img.haodanku.com/3ce7249ba847286308c82bed97f7817d-600'
+									},
+									{
+										son_name: '吊带裙',
+										imgurl: 'http://img.haodanku.com/0716abc13652355b130dc3c83d39a7dc-600'
+									},
+									{
+										son_name: '纯色裙',
+										imgurl: 'http://img.haodanku.com/de464503dab5d20a5d6505573f1624bd-600'
+									}
+								]
+							},
+							{
+								next_name: '套装',
+								info: [{
+										son_name: '两件套',
+										imgurl: 'http://img.haodanku.com/dcabee1a81b9c631bbc903597fad52a2-600'
+									},
+									{
+										son_name: '夏季套装',
+										imgurl: 'http://img.haodanku.com/fcf45b47afad11fe7ac05c179de174c1-600'
+									},
+									{
+										son_name: '大码女装',
+										imgurl: 'http://img.haodanku.com/005f603379aa285718b3f7c99c1ca88a-600'
+									},
+									{
+										son_name: '妈妈装',
+										imgurl: 'http://img.haodanku.com/cf445d5d9ddad49a38c0e542be22b565-600'
+									},
+									{
+										son_name: '婚纱',
+										imgurl: 'http://img.haodanku.com/d40c79df78c0a0cfbbb05605891950db-600'
+									},
+									{
+										son_name: '小香风',
+										imgurl: 'http://img.haodanku.com/2907a1a4faf78674c4ff422ce9ca16eb-600'
+									},
+									{
+										son_name: '运动套装',
+										imgurl: 'http://img.haodanku.com/97340565f9420afafc7a37966095da75-600'
+									},
+									{
+										son_name: '雪纺套装',
+										imgurl: 'http://img.haodanku.com/233b900fde6dc193a0c4b8886d121002-600'
+									}
+								]
+							},
+							{
+								next_name: 'T恤',
+								info: [{
+										son_name: 'T恤',
+										imgurl: 'http://img.haodanku.com/397fc31d9f3abdef5177ab1ec82a254c-600'
+									},
+									{
+										son_name: '一字肩',
+										imgurl: 'http://img.haodanku.com/f4ca5e271d74fd5c29d051c7b1106f04-600'
+									},
+									{
+										son_name: '印花雪纺',
+										imgurl: 'http://img.haodanku.com/60e743e4a53b475f2b01a606b61ab217-600'
+									},
+									{
+										son_name: '吊带T恤',
+										imgurl: 'http://img.haodanku.com/7aad5119d9e8d49c74ab97e31944ba63-600'
+									},
+									{
+										son_name: '娃娃衫',
+										imgurl: 'http://img.haodanku.com/9a596fb1d0c7008cdfad30e5562b3b3f-600'
+									},
+									{
+										son_name: '情侣T恤',
+										imgurl: 'http://img.haodanku.com/9880baf8c939776a65a64c6ec6b37621-600'
+									},
+									{
+										son_name: '白衬衣',
+										imgurl: 'http://img.haodanku.com/1c60edccb596c5f3496d883be75869c5-600'
+									},
+									{
+										son_name: '短袖T恤',
+										imgurl: 'http://img.haodanku.com/81ee9efd599bcfb76668e0ab3d08df6d-600'
+									},
+									{
+										son_name: '纯色T恤',
+										imgurl: 'http://img.haodanku.com/44d365c3c459a4a04185f1fa947e7353-600'
+									},
+									{
+										son_name: '蕾丝拼接',
+										imgurl: 'http://img.haodanku.com/f77f58f4f0f67b4c3cd830954354462a-600'
+									},
+									{
+										son_name: '蕾丝衫',
+										imgurl: 'http://img.haodanku.com/fe7c5357cb05b2128bf95c014c402092-600'
+									},
+									{
+										son_name: '防晒衫',
+										imgurl: 'http://img.haodanku.com/99d63b5ef04f0599ef94a71b1a247fef-600'
+									},
+									{
+										son_name: '露肩上衣',
+										imgurl: 'http://img.haodanku.com/a39d41be029747367e3889ea195043b1-600'
+									},
+									{
+										son_name: '长袖T恤',
+										imgurl: 'http://img.haodanku.com/d0ae23ec9b6d46e16bd2e0e924b2bd83-600'
+									}
+								]
+							},
+							{
+								next_name: '内搭',
+								info: [{
+										son_name: '喇叭袖',
+										imgurl: 'http://img.haodanku.com/6d8739d3e2aba86cfe98c3d8c631cb18-600'
+									},
+									{
+										son_name: '开衫',
+										imgurl: 'http://img.haodanku.com/051f12a2106ca222a4a651ef556419b2-600'
+									},
+									{
+										son_name: '打底毛衣',
+										imgurl: 'http://img.haodanku.com/d93f276b06e1aa4d9f5a7c4718ca675d-600'
+									},
+									{
+										son_name: '毛衣',
+										imgurl: 'http://img.haodanku.com/5ae75e2e972aec9126ac7ef6e44bd279-600'
+									},
+									{
+										son_name: '针织衫',
+										imgurl: 'http://img.haodanku.com/d989f5485e411a23b53d903787e9e8ae-600'
+									},
+									{
+										son_name: '高领',
+										imgurl: 'http://img.haodanku.com/226f1370ec92bd4804621851e4a45cd4-600'
+									}
+								]
+							},
+							{
+								next_name: '外套',
+								info: [{
+										son_name: '卫衣',
+										imgurl: 'http://img.haodanku.com/2329f94b4030aa27e819e159d64969c4-600'
+									},
+									{
+										son_name: '夹克',
+										imgurl: 'http://img.haodanku.com/ab499244178c525025d8a3e1ff4ed36e-600'
+									},
+									{
+										son_name: '棉服',
+										imgurl: 'http://img.haodanku.com/6d3898d409060a49ebc6a80c150d15b2-600'
+									},
+									{
+										son_name: '毛呢',
+										imgurl: 'http://img.haodanku.com/5b397df30169b79af64c569606b7e0af-600'
+									},
+									{
+										son_name: '牛仔',
+										imgurl: 'http://img.haodanku.com/38a001153e2f30933f3cae16f2b2a171-600'
+									},
+									{
+										son_name: '皮衣',
+										imgurl: 'http://img.haodanku.com/78c7fcecea8eaf4b329002b3308b3545-600'
+									},
+									{
+										son_name: '短外套',
+										imgurl: 'http://img.haodanku.com/26a08a44cce036a5cf49a3322e4cbf37-600'
+									},
+									{
+										son_name: '羽绒',
+										imgurl: 'http://img.haodanku.com/8b319845442d1ca43866388b3cdc9008-600'
+									},
+									{
+										son_name: '西装',
+										imgurl: 'http://img.haodanku.com/8760d56b968fff5f4542cba45398f911-600'
+									},
+									{
+										son_name: '风衣',
+										imgurl: 'http://img.haodanku.com/fce2eacae26fdd2be1e56319570db29e-600'
+									},
+									{
+										son_name: '马甲',
+										imgurl: 'http://img.haodanku.com/72c6ef4b40de18dddb9ae5dd38a9a051-600'
+									}
+								]
+							},
+							{
+								next_name: '裤子',
+								info: [{
+										son_name: '休闲裤',
+										imgurl: 'http://img.haodanku.com/047d30183d119f6805767a2649e05047-600'
+									},
+									{
+										son_name: '哈伦裤',
+										imgurl: 'http://img.haodanku.com/a1711789779fbd5c921fe1672619879f-600'
+									},
+									{
+										son_name: '棉麻裤',
+										imgurl: 'http://img.haodanku.com/a3e99f528f0cf163b96b0f6090226364-600'
+									},
+									{
+										son_name: '牛仔裤',
+										imgurl: 'http://img.haodanku.com/d1c7bf2b3a3d52047bf2bba87527ce2c-600'
+									},
+									{
+										son_name: '短裤',
+										imgurl: 'http://img.haodanku.com/d370086ea3d2a9c4ba569cfb8daf0d8e-600'
+									},
+									{
+										son_name: '破洞牛仔裤',
+										imgurl: 'http://img.haodanku.com/82462d589beb34111e9fccf66c170c7d-600'
+									},
+									{
+										son_name: '裤子',
+										imgurl: 'http://img.haodanku.com/049ea9c85a7b917eb9f0844df3910d4b-600'
+									},
+									{
+										son_name: '阔腿裤',
+										imgurl: 'http://img.haodanku.com/d59ec97908e5f2a3af232cbb23c54f31-600'
+									}
+								]
+							}
+						]
+					},
+					{
+						cid: 6,
+						main_name: '女装',
+						data: [{
+								next_name: '裙装',
+								info: [{
+										son_name: '连衣裙',
+										imgurl: 'http://img.haodanku.com/89937f347f81f5c5539f9da9b35b7a62-600'
+									},
+									{
+										son_name: '雪纺裙',
+										imgurl: 'http://img.haodanku.com/3deb054da8cb2f4b1b5a07ab530e7e41-600'
+									},
+									{
+										son_name: '半身裙',
+										imgurl: 'http://img.haodanku.com/b68bc66ab1a81db336110b7c1196b5a9-600'
+									},
+									{
+										son_name: '印花裙',
+										imgurl: 'http://img.haodanku.com/3ce7249ba847286308c82bed97f7817d-600'
+									},
+									{
+										son_name: '吊带裙',
+										imgurl: 'http://img.haodanku.com/0716abc13652355b130dc3c83d39a7dc-600'
+									},
+									{
+										son_name: '纯色裙',
+										imgurl: 'http://img.haodanku.com/de464503dab5d20a5d6505573f1624bd-600'
+									}
+								]
+							},
+							{
+								next_name: '套装',
+								info: [{
+										son_name: '两件套',
+										imgurl: 'http://img.haodanku.com/dcabee1a81b9c631bbc903597fad52a2-600'
+									},
+									{
+										son_name: '夏季套装',
+										imgurl: 'http://img.haodanku.com/fcf45b47afad11fe7ac05c179de174c1-600'
+									},
+									{
+										son_name: '大码女装',
+										imgurl: 'http://img.haodanku.com/005f603379aa285718b3f7c99c1ca88a-600'
+									},
+									{
+										son_name: '妈妈装',
+										imgurl: 'http://img.haodanku.com/cf445d5d9ddad49a38c0e542be22b565-600'
+									},
+									{
+										son_name: '婚纱',
+										imgurl: 'http://img.haodanku.com/d40c79df78c0a0cfbbb05605891950db-600'
+									},
+									{
+										son_name: '小香风',
+										imgurl: 'http://img.haodanku.com/2907a1a4faf78674c4ff422ce9ca16eb-600'
+									},
+									{
+										son_name: '运动套装',
+										imgurl: 'http://img.haodanku.com/97340565f9420afafc7a37966095da75-600'
+									},
+									{
+										son_name: '雪纺套装',
+										imgurl: 'http://img.haodanku.com/233b900fde6dc193a0c4b8886d121002-600'
+									}
+								]
+							},
+							{
+								next_name: 'T恤',
+								info: [{
+										son_name: 'T恤',
+										imgurl: 'http://img.haodanku.com/397fc31d9f3abdef5177ab1ec82a254c-600'
+									},
+									{
+										son_name: '一字肩',
+										imgurl: 'http://img.haodanku.com/f4ca5e271d74fd5c29d051c7b1106f04-600'
+									},
+									{
+										son_name: '印花雪纺',
+										imgurl: 'http://img.haodanku.com/60e743e4a53b475f2b01a606b61ab217-600'
+									},
+									{
+										son_name: '吊带T恤',
+										imgurl: 'http://img.haodanku.com/7aad5119d9e8d49c74ab97e31944ba63-600'
+									},
+									{
+										son_name: '娃娃衫',
+										imgurl: 'http://img.haodanku.com/9a596fb1d0c7008cdfad30e5562b3b3f-600'
+									},
+									{
+										son_name: '情侣T恤',
+										imgurl: 'http://img.haodanku.com/9880baf8c939776a65a64c6ec6b37621-600'
+									},
+									{
+										son_name: '白衬衣',
+										imgurl: 'http://img.haodanku.com/1c60edccb596c5f3496d883be75869c5-600'
+									},
+									{
+										son_name: '短袖T恤',
+										imgurl: 'http://img.haodanku.com/81ee9efd599bcfb76668e0ab3d08df6d-600'
+									},
+									{
+										son_name: '纯色T恤',
+										imgurl: 'http://img.haodanku.com/44d365c3c459a4a04185f1fa947e7353-600'
+									},
+									{
+										son_name: '蕾丝拼接',
+										imgurl: 'http://img.haodanku.com/f77f58f4f0f67b4c3cd830954354462a-600'
+									},
+									{
+										son_name: '蕾丝衫',
+										imgurl: 'http://img.haodanku.com/fe7c5357cb05b2128bf95c014c402092-600'
+									},
+									{
+										son_name: '防晒衫',
+										imgurl: 'http://img.haodanku.com/99d63b5ef04f0599ef94a71b1a247fef-600'
+									},
+									{
+										son_name: '露肩上衣',
+										imgurl: 'http://img.haodanku.com/a39d41be029747367e3889ea195043b1-600'
+									},
+									{
+										son_name: '长袖T恤',
+										imgurl: 'http://img.haodanku.com/d0ae23ec9b6d46e16bd2e0e924b2bd83-600'
+									}
+								]
+							},
+							{
+								next_name: '内搭',
+								info: [{
+										son_name: '喇叭袖',
+										imgurl: 'http://img.haodanku.com/6d8739d3e2aba86cfe98c3d8c631cb18-600'
+									},
+									{
+										son_name: '开衫',
+										imgurl: 'http://img.haodanku.com/051f12a2106ca222a4a651ef556419b2-600'
+									},
+									{
+										son_name: '打底毛衣',
+										imgurl: 'http://img.haodanku.com/d93f276b06e1aa4d9f5a7c4718ca675d-600'
+									},
+									{
+										son_name: '毛衣',
+										imgurl: 'http://img.haodanku.com/5ae75e2e972aec9126ac7ef6e44bd279-600'
+									},
+									{
+										son_name: '针织衫',
+										imgurl: 'http://img.haodanku.com/d989f5485e411a23b53d903787e9e8ae-600'
+									},
+									{
+										son_name: '高领',
+										imgurl: 'http://img.haodanku.com/226f1370ec92bd4804621851e4a45cd4-600'
+									}
+								]
+							},
+							{
+								next_name: '外套',
+								info: [{
+										son_name: '卫衣',
+										imgurl: 'http://img.haodanku.com/2329f94b4030aa27e819e159d64969c4-600'
+									},
+									{
+										son_name: '夹克',
+										imgurl: 'http://img.haodanku.com/ab499244178c525025d8a3e1ff4ed36e-600'
+									},
+									{
+										son_name: '棉服',
+										imgurl: 'http://img.haodanku.com/6d3898d409060a49ebc6a80c150d15b2-600'
+									},
+									{
+										son_name: '毛呢',
+										imgurl: 'http://img.haodanku.com/5b397df30169b79af64c569606b7e0af-600'
+									},
+									{
+										son_name: '牛仔',
+										imgurl: 'http://img.haodanku.com/38a001153e2f30933f3cae16f2b2a171-600'
+									},
+									{
+										son_name: '皮衣',
+										imgurl: 'http://img.haodanku.com/78c7fcecea8eaf4b329002b3308b3545-600'
+									},
+									{
+										son_name: '短外套',
+										imgurl: 'http://img.haodanku.com/26a08a44cce036a5cf49a3322e4cbf37-600'
+									},
+									{
+										son_name: '羽绒',
+										imgurl: 'http://img.haodanku.com/8b319845442d1ca43866388b3cdc9008-600'
+									},
+									{
+										son_name: '西装',
+										imgurl: 'http://img.haodanku.com/8760d56b968fff5f4542cba45398f911-600'
+									},
+									{
+										son_name: '风衣',
+										imgurl: 'http://img.haodanku.com/fce2eacae26fdd2be1e56319570db29e-600'
+									},
+									{
+										son_name: '马甲',
+										imgurl: 'http://img.haodanku.com/72c6ef4b40de18dddb9ae5dd38a9a051-600'
+									}
+								]
+							},
+							{
+								next_name: '裤子',
+								info: [{
+										son_name: '休闲裤',
+										imgurl: 'http://img.haodanku.com/047d30183d119f6805767a2649e05047-600'
+									},
+									{
+										son_name: '哈伦裤',
+										imgurl: 'http://img.haodanku.com/a1711789779fbd5c921fe1672619879f-600'
+									},
+									{
+										son_name: '棉麻裤',
+										imgurl: 'http://img.haodanku.com/a3e99f528f0cf163b96b0f6090226364-600'
+									},
+									{
+										son_name: '牛仔裤',
+										imgurl: 'http://img.haodanku.com/d1c7bf2b3a3d52047bf2bba87527ce2c-600'
+									},
+									{
+										son_name: '短裤',
+										imgurl: 'http://img.haodanku.com/d370086ea3d2a9c4ba569cfb8daf0d8e-600'
+									},
+									{
+										son_name: '破洞牛仔裤',
+										imgurl: 'http://img.haodanku.com/82462d589beb34111e9fccf66c170c7d-600'
+									},
+									{
+										son_name: '裤子',
+										imgurl: 'http://img.haodanku.com/049ea9c85a7b917eb9f0844df3910d4b-600'
+									},
+									{
+										son_name: '阔腿裤',
+										imgurl: 'http://img.haodanku.com/d59ec97908e5f2a3af232cbb23c54f31-600'
+									}
+								]
+							}
+						]
+					},
+					{
+						cid: 7,
+						main_name: '女装',
+						data: [{
+								next_name: '裙装',
+								info: [{
+										son_name: '连衣裙',
+										imgurl: 'http://img.haodanku.com/89937f347f81f5c5539f9da9b35b7a62-600'
+									},
+									{
+										son_name: '雪纺裙',
+										imgurl: 'http://img.haodanku.com/3deb054da8cb2f4b1b5a07ab530e7e41-600'
+									},
+									{
+										son_name: '半身裙',
+										imgurl: 'http://img.haodanku.com/b68bc66ab1a81db336110b7c1196b5a9-600'
+									},
+									{
+										son_name: '印花裙',
+										imgurl: 'http://img.haodanku.com/3ce7249ba847286308c82bed97f7817d-600'
+									},
+									{
+										son_name: '吊带裙',
+										imgurl: 'http://img.haodanku.com/0716abc13652355b130dc3c83d39a7dc-600'
+									},
+									{
+										son_name: '纯色裙',
+										imgurl: 'http://img.haodanku.com/de464503dab5d20a5d6505573f1624bd-600'
+									}
+								]
+							},
+							{
+								next_name: '套装',
+								info: [{
+										son_name: '两件套',
+										imgurl: 'http://img.haodanku.com/dcabee1a81b9c631bbc903597fad52a2-600'
+									},
+									{
+										son_name: '夏季套装',
+										imgurl: 'http://img.haodanku.com/fcf45b47afad11fe7ac05c179de174c1-600'
+									},
+									{
+										son_name: '大码女装',
+										imgurl: 'http://img.haodanku.com/005f603379aa285718b3f7c99c1ca88a-600'
+									},
+									{
+										son_name: '妈妈装',
+										imgurl: 'http://img.haodanku.com/cf445d5d9ddad49a38c0e542be22b565-600'
+									},
+									{
+										son_name: '婚纱',
+										imgurl: 'http://img.haodanku.com/d40c79df78c0a0cfbbb05605891950db-600'
+									},
+									{
+										son_name: '小香风',
+										imgurl: 'http://img.haodanku.com/2907a1a4faf78674c4ff422ce9ca16eb-600'
+									},
+									{
+										son_name: '运动套装',
+										imgurl: 'http://img.haodanku.com/97340565f9420afafc7a37966095da75-600'
+									},
+									{
+										son_name: '雪纺套装',
+										imgurl: 'http://img.haodanku.com/233b900fde6dc193a0c4b8886d121002-600'
+									}
+								]
+							},
+							{
+								next_name: 'T恤',
+								info: [{
+										son_name: 'T恤',
+										imgurl: 'http://img.haodanku.com/397fc31d9f3abdef5177ab1ec82a254c-600'
+									},
+									{
+										son_name: '一字肩',
+										imgurl: 'http://img.haodanku.com/f4ca5e271d74fd5c29d051c7b1106f04-600'
+									},
+									{
+										son_name: '印花雪纺',
+										imgurl: 'http://img.haodanku.com/60e743e4a53b475f2b01a606b61ab217-600'
+									},
+									{
+										son_name: '吊带T恤',
+										imgurl: 'http://img.haodanku.com/7aad5119d9e8d49c74ab97e31944ba63-600'
+									},
+									{
+										son_name: '娃娃衫',
+										imgurl: 'http://img.haodanku.com/9a596fb1d0c7008cdfad30e5562b3b3f-600'
+									},
+									{
+										son_name: '情侣T恤',
+										imgurl: 'http://img.haodanku.com/9880baf8c939776a65a64c6ec6b37621-600'
+									},
+									{
+										son_name: '白衬衣',
+										imgurl: 'http://img.haodanku.com/1c60edccb596c5f3496d883be75869c5-600'
+									},
+									{
+										son_name: '短袖T恤',
+										imgurl: 'http://img.haodanku.com/81ee9efd599bcfb76668e0ab3d08df6d-600'
+									},
+									{
+										son_name: '纯色T恤',
+										imgurl: 'http://img.haodanku.com/44d365c3c459a4a04185f1fa947e7353-600'
+									},
+									{
+										son_name: '蕾丝拼接',
+										imgurl: 'http://img.haodanku.com/f77f58f4f0f67b4c3cd830954354462a-600'
+									},
+									{
+										son_name: '蕾丝衫',
+										imgurl: 'http://img.haodanku.com/fe7c5357cb05b2128bf95c014c402092-600'
+									},
+									{
+										son_name: '防晒衫',
+										imgurl: 'http://img.haodanku.com/99d63b5ef04f0599ef94a71b1a247fef-600'
+									},
+									{
+										son_name: '露肩上衣',
+										imgurl: 'http://img.haodanku.com/a39d41be029747367e3889ea195043b1-600'
+									},
+									{
+										son_name: '长袖T恤',
+										imgurl: 'http://img.haodanku.com/d0ae23ec9b6d46e16bd2e0e924b2bd83-600'
+									}
+								]
+							},
+							{
+								next_name: '内搭',
+								info: [{
+										son_name: '喇叭袖',
+										imgurl: 'http://img.haodanku.com/6d8739d3e2aba86cfe98c3d8c631cb18-600'
+									},
+									{
+										son_name: '开衫',
+										imgurl: 'http://img.haodanku.com/051f12a2106ca222a4a651ef556419b2-600'
+									},
+									{
+										son_name: '打底毛衣',
+										imgurl: 'http://img.haodanku.com/d93f276b06e1aa4d9f5a7c4718ca675d-600'
+									},
+									{
+										son_name: '毛衣',
+										imgurl: 'http://img.haodanku.com/5ae75e2e972aec9126ac7ef6e44bd279-600'
+									},
+									{
+										son_name: '针织衫',
+										imgurl: 'http://img.haodanku.com/d989f5485e411a23b53d903787e9e8ae-600'
+									},
+									{
+										son_name: '高领',
+										imgurl: 'http://img.haodanku.com/226f1370ec92bd4804621851e4a45cd4-600'
+									}
+								]
+							},
+							{
+								next_name: '外套',
+								info: [{
+										son_name: '卫衣',
+										imgurl: 'http://img.haodanku.com/2329f94b4030aa27e819e159d64969c4-600'
+									},
+									{
+										son_name: '夹克',
+										imgurl: 'http://img.haodanku.com/ab499244178c525025d8a3e1ff4ed36e-600'
+									},
+									{
+										son_name: '棉服',
+										imgurl: 'http://img.haodanku.com/6d3898d409060a49ebc6a80c150d15b2-600'
+									},
+									{
+										son_name: '毛呢',
+										imgurl: 'http://img.haodanku.com/5b397df30169b79af64c569606b7e0af-600'
+									},
+									{
+										son_name: '牛仔',
+										imgurl: 'http://img.haodanku.com/38a001153e2f30933f3cae16f2b2a171-600'
+									},
+									{
+										son_name: '皮衣',
+										imgurl: 'http://img.haodanku.com/78c7fcecea8eaf4b329002b3308b3545-600'
+									},
+									{
+										son_name: '短外套',
+										imgurl: 'http://img.haodanku.com/26a08a44cce036a5cf49a3322e4cbf37-600'
+									},
+									{
+										son_name: '羽绒',
+										imgurl: 'http://img.haodanku.com/8b319845442d1ca43866388b3cdc9008-600'
+									},
+									{
+										son_name: '西装',
+										imgurl: 'http://img.haodanku.com/8760d56b968fff5f4542cba45398f911-600'
+									},
+									{
+										son_name: '风衣',
+										imgurl: 'http://img.haodanku.com/fce2eacae26fdd2be1e56319570db29e-600'
+									},
+									{
+										son_name: '马甲',
+										imgurl: 'http://img.haodanku.com/72c6ef4b40de18dddb9ae5dd38a9a051-600'
+									}
+								]
+							},
+							{
+								next_name: '裤子',
+								info: [{
+										son_name: '休闲裤',
+										imgurl: 'http://img.haodanku.com/047d30183d119f6805767a2649e05047-600'
+									},
+									{
+										son_name: '哈伦裤',
+										imgurl: 'http://img.haodanku.com/a1711789779fbd5c921fe1672619879f-600'
+									},
+									{
+										son_name: '棉麻裤',
+										imgurl: 'http://img.haodanku.com/a3e99f528f0cf163b96b0f6090226364-600'
+									},
+									{
+										son_name: '牛仔裤',
+										imgurl: 'http://img.haodanku.com/d1c7bf2b3a3d52047bf2bba87527ce2c-600'
+									},
+									{
+										son_name: '短裤',
+										imgurl: 'http://img.haodanku.com/d370086ea3d2a9c4ba569cfb8daf0d8e-600'
+									},
+									{
+										son_name: '破洞牛仔裤',
+										imgurl: 'http://img.haodanku.com/82462d589beb34111e9fccf66c170c7d-600'
+									},
+									{
+										son_name: '裤子',
+										imgurl: 'http://img.haodanku.com/049ea9c85a7b917eb9f0844df3910d4b-600'
+									},
+									{
+										son_name: '阔腿裤',
+										imgurl: 'http://img.haodanku.com/d59ec97908e5f2a3af232cbb23c54f31-600'
+									}
+								]
+							}
+						]
+					},
+					{
+						cid: 8,
+						main_name: '女装',
+						data: [{
+								next_name: '裙装',
+								info: [{
+										son_name: '连衣裙',
+										imgurl: 'http://img.haodanku.com/89937f347f81f5c5539f9da9b35b7a62-600'
+									},
+									{
+										son_name: '雪纺裙',
+										imgurl: 'http://img.haodanku.com/3deb054da8cb2f4b1b5a07ab530e7e41-600'
+									},
+									{
+										son_name: '半身裙',
+										imgurl: 'http://img.haodanku.com/b68bc66ab1a81db336110b7c1196b5a9-600'
+									},
+									{
+										son_name: '印花裙',
+										imgurl: 'http://img.haodanku.com/3ce7249ba847286308c82bed97f7817d-600'
+									},
+									{
+										son_name: '吊带裙',
+										imgurl: 'http://img.haodanku.com/0716abc13652355b130dc3c83d39a7dc-600'
+									},
+									{
+										son_name: '纯色裙',
+										imgurl: 'http://img.haodanku.com/de464503dab5d20a5d6505573f1624bd-600'
+									}
+								]
+							},
+							{
+								next_name: '套装',
+								info: [{
+										son_name: '两件套',
+										imgurl: 'http://img.haodanku.com/dcabee1a81b9c631bbc903597fad52a2-600'
+									},
+									{
+										son_name: '夏季套装',
+										imgurl: 'http://img.haodanku.com/fcf45b47afad11fe7ac05c179de174c1-600'
+									},
+									{
+										son_name: '大码女装',
+										imgurl: 'http://img.haodanku.com/005f603379aa285718b3f7c99c1ca88a-600'
+									},
+									{
+										son_name: '妈妈装',
+										imgurl: 'http://img.haodanku.com/cf445d5d9ddad49a38c0e542be22b565-600'
+									},
+									{
+										son_name: '婚纱',
+										imgurl: 'http://img.haodanku.com/d40c79df78c0a0cfbbb05605891950db-600'
+									},
+									{
+										son_name: '小香风',
+										imgurl: 'http://img.haodanku.com/2907a1a4faf78674c4ff422ce9ca16eb-600'
+									},
+									{
+										son_name: '运动套装',
+										imgurl: 'http://img.haodanku.com/97340565f9420afafc7a37966095da75-600'
+									},
+									{
+										son_name: '雪纺套装',
+										imgurl: 'http://img.haodanku.com/233b900fde6dc193a0c4b8886d121002-600'
+									}
+								]
+							},
+							{
+								next_name: 'T恤',
+								info: [{
+										son_name: 'T恤',
+										imgurl: 'http://img.haodanku.com/397fc31d9f3abdef5177ab1ec82a254c-600'
+									},
+									{
+										son_name: '一字肩',
+										imgurl: 'http://img.haodanku.com/f4ca5e271d74fd5c29d051c7b1106f04-600'
+									},
+									{
+										son_name: '印花雪纺',
+										imgurl: 'http://img.haodanku.com/60e743e4a53b475f2b01a606b61ab217-600'
+									},
+									{
+										son_name: '吊带T恤',
+										imgurl: 'http://img.haodanku.com/7aad5119d9e8d49c74ab97e31944ba63-600'
+									},
+									{
+										son_name: '娃娃衫',
+										imgurl: 'http://img.haodanku.com/9a596fb1d0c7008cdfad30e5562b3b3f-600'
+									},
+									{
+										son_name: '情侣T恤',
+										imgurl: 'http://img.haodanku.com/9880baf8c939776a65a64c6ec6b37621-600'
+									},
+									{
+										son_name: '白衬衣',
+										imgurl: 'http://img.haodanku.com/1c60edccb596c5f3496d883be75869c5-600'
+									},
+									{
+										son_name: '短袖T恤',
+										imgurl: 'http://img.haodanku.com/81ee9efd599bcfb76668e0ab3d08df6d-600'
+									},
+									{
+										son_name: '纯色T恤',
+										imgurl: 'http://img.haodanku.com/44d365c3c459a4a04185f1fa947e7353-600'
+									},
+									{
+										son_name: '蕾丝拼接',
+										imgurl: 'http://img.haodanku.com/f77f58f4f0f67b4c3cd830954354462a-600'
+									},
+									{
+										son_name: '蕾丝衫',
+										imgurl: 'http://img.haodanku.com/fe7c5357cb05b2128bf95c014c402092-600'
+									},
+									{
+										son_name: '防晒衫',
+										imgurl: 'http://img.haodanku.com/99d63b5ef04f0599ef94a71b1a247fef-600'
+									},
+									{
+										son_name: '露肩上衣',
+										imgurl: 'http://img.haodanku.com/a39d41be029747367e3889ea195043b1-600'
+									},
+									{
+										son_name: '长袖T恤',
+										imgurl: 'http://img.haodanku.com/d0ae23ec9b6d46e16bd2e0e924b2bd83-600'
+									}
+								]
+							},
+							{
+								next_name: '内搭',
+								info: [{
+										son_name: '喇叭袖',
+										imgurl: 'http://img.haodanku.com/6d8739d3e2aba86cfe98c3d8c631cb18-600'
+									},
+									{
+										son_name: '开衫',
+										imgurl: 'http://img.haodanku.com/051f12a2106ca222a4a651ef556419b2-600'
+									},
+									{
+										son_name: '打底毛衣',
+										imgurl: 'http://img.haodanku.com/d93f276b06e1aa4d9f5a7c4718ca675d-600'
+									},
+									{
+										son_name: '毛衣',
+										imgurl: 'http://img.haodanku.com/5ae75e2e972aec9126ac7ef6e44bd279-600'
+									},
+									{
+										son_name: '针织衫',
+										imgurl: 'http://img.haodanku.com/d989f5485e411a23b53d903787e9e8ae-600'
+									},
+									{
+										son_name: '高领',
+										imgurl: 'http://img.haodanku.com/226f1370ec92bd4804621851e4a45cd4-600'
+									}
+								]
+							},
+							{
+								next_name: '外套',
+								info: [{
+										son_name: '卫衣',
+										imgurl: 'http://img.haodanku.com/2329f94b4030aa27e819e159d64969c4-600'
+									},
+									{
+										son_name: '夹克',
+										imgurl: 'http://img.haodanku.com/ab499244178c525025d8a3e1ff4ed36e-600'
+									},
+									{
+										son_name: '棉服',
+										imgurl: 'http://img.haodanku.com/6d3898d409060a49ebc6a80c150d15b2-600'
+									},
+									{
+										son_name: '毛呢',
+										imgurl: 'http://img.haodanku.com/5b397df30169b79af64c569606b7e0af-600'
+									},
+									{
+										son_name: '牛仔',
+										imgurl: 'http://img.haodanku.com/38a001153e2f30933f3cae16f2b2a171-600'
+									},
+									{
+										son_name: '皮衣',
+										imgurl: 'http://img.haodanku.com/78c7fcecea8eaf4b329002b3308b3545-600'
+									},
+									{
+										son_name: '短外套',
+										imgurl: 'http://img.haodanku.com/26a08a44cce036a5cf49a3322e4cbf37-600'
+									},
+									{
+										son_name: '羽绒',
+										imgurl: 'http://img.haodanku.com/8b319845442d1ca43866388b3cdc9008-600'
+									},
+									{
+										son_name: '西装',
+										imgurl: 'http://img.haodanku.com/8760d56b968fff5f4542cba45398f911-600'
+									},
+									{
+										son_name: '风衣',
+										imgurl: 'http://img.haodanku.com/fce2eacae26fdd2be1e56319570db29e-600'
+									},
+									{
+										son_name: '马甲',
+										imgurl: 'http://img.haodanku.com/72c6ef4b40de18dddb9ae5dd38a9a051-600'
+									}
+								]
+							},
+							{
+								next_name: '裤子',
+								info: [{
+										son_name: '休闲裤',
+										imgurl: 'http://img.haodanku.com/047d30183d119f6805767a2649e05047-600'
+									},
+									{
+										son_name: '哈伦裤',
+										imgurl: 'http://img.haodanku.com/a1711789779fbd5c921fe1672619879f-600'
+									},
+									{
+										son_name: '棉麻裤',
+										imgurl: 'http://img.haodanku.com/a3e99f528f0cf163b96b0f6090226364-600'
+									},
+									{
+										son_name: '牛仔裤',
+										imgurl: 'http://img.haodanku.com/d1c7bf2b3a3d52047bf2bba87527ce2c-600'
+									},
+									{
+										son_name: '短裤',
+										imgurl: 'http://img.haodanku.com/d370086ea3d2a9c4ba569cfb8daf0d8e-600'
+									},
+									{
+										son_name: '破洞牛仔裤',
+										imgurl: 'http://img.haodanku.com/82462d589beb34111e9fccf66c170c7d-600'
+									},
+									{
+										son_name: '裤子',
+										imgurl: 'http://img.haodanku.com/049ea9c85a7b917eb9f0844df3910d4b-600'
+									},
+									{
+										son_name: '阔腿裤',
+										imgurl: 'http://img.haodanku.com/d59ec97908e5f2a3af232cbb23c54f31-600'
+									}
+								]
+							}
+						]
+					},
+					{
+						cid: 9,
+						main_name: '女装',
+						data: [{
+								next_name: '裙装',
+								info: [{
+										son_name: '连衣裙',
+										imgurl: 'http://img.haodanku.com/89937f347f81f5c5539f9da9b35b7a62-600'
+									},
+									{
+										son_name: '雪纺裙',
+										imgurl: 'http://img.haodanku.com/3deb054da8cb2f4b1b5a07ab530e7e41-600'
+									},
+									{
+										son_name: '半身裙',
+										imgurl: 'http://img.haodanku.com/b68bc66ab1a81db336110b7c1196b5a9-600'
+									},
+									{
+										son_name: '印花裙',
+										imgurl: 'http://img.haodanku.com/3ce7249ba847286308c82bed97f7817d-600'
+									},
+									{
+										son_name: '吊带裙',
+										imgurl: 'http://img.haodanku.com/0716abc13652355b130dc3c83d39a7dc-600'
+									},
+									{
+										son_name: '纯色裙',
+										imgurl: 'http://img.haodanku.com/de464503dab5d20a5d6505573f1624bd-600'
+									}
+								]
+							},
+							{
+								next_name: '套装',
+								info: [{
+										son_name: '两件套',
+										imgurl: 'http://img.haodanku.com/dcabee1a81b9c631bbc903597fad52a2-600'
+									},
+									{
+										son_name: '夏季套装',
+										imgurl: 'http://img.haodanku.com/fcf45b47afad11fe7ac05c179de174c1-600'
+									},
+									{
+										son_name: '大码女装',
+										imgurl: 'http://img.haodanku.com/005f603379aa285718b3f7c99c1ca88a-600'
+									},
+									{
+										son_name: '妈妈装',
+										imgurl: 'http://img.haodanku.com/cf445d5d9ddad49a38c0e542be22b565-600'
+									},
+									{
+										son_name: '婚纱',
+										imgurl: 'http://img.haodanku.com/d40c79df78c0a0cfbbb05605891950db-600'
+									},
+									{
+										son_name: '小香风',
+										imgurl: 'http://img.haodanku.com/2907a1a4faf78674c4ff422ce9ca16eb-600'
+									},
+									{
+										son_name: '运动套装',
+										imgurl: 'http://img.haodanku.com/97340565f9420afafc7a37966095da75-600'
+									},
+									{
+										son_name: '雪纺套装',
+										imgurl: 'http://img.haodanku.com/233b900fde6dc193a0c4b8886d121002-600'
+									}
+								]
+							},
+							{
+								next_name: 'T恤',
+								info: [{
+										son_name: 'T恤',
+										imgurl: 'http://img.haodanku.com/397fc31d9f3abdef5177ab1ec82a254c-600'
+									},
+									{
+										son_name: '一字肩',
+										imgurl: 'http://img.haodanku.com/f4ca5e271d74fd5c29d051c7b1106f04-600'
+									},
+									{
+										son_name: '印花雪纺',
+										imgurl: 'http://img.haodanku.com/60e743e4a53b475f2b01a606b61ab217-600'
+									},
+									{
+										son_name: '吊带T恤',
+										imgurl: 'http://img.haodanku.com/7aad5119d9e8d49c74ab97e31944ba63-600'
+									},
+									{
+										son_name: '娃娃衫',
+										imgurl: 'http://img.haodanku.com/9a596fb1d0c7008cdfad30e5562b3b3f-600'
+									},
+									{
+										son_name: '情侣T恤',
+										imgurl: 'http://img.haodanku.com/9880baf8c939776a65a64c6ec6b37621-600'
+									},
+									{
+										son_name: '白衬衣',
+										imgurl: 'http://img.haodanku.com/1c60edccb596c5f3496d883be75869c5-600'
+									},
+									{
+										son_name: '短袖T恤',
+										imgurl: 'http://img.haodanku.com/81ee9efd599bcfb76668e0ab3d08df6d-600'
+									},
+									{
+										son_name: '纯色T恤',
+										imgurl: 'http://img.haodanku.com/44d365c3c459a4a04185f1fa947e7353-600'
+									},
+									{
+										son_name: '蕾丝拼接',
+										imgurl: 'http://img.haodanku.com/f77f58f4f0f67b4c3cd830954354462a-600'
+									},
+									{
+										son_name: '蕾丝衫',
+										imgurl: 'http://img.haodanku.com/fe7c5357cb05b2128bf95c014c402092-600'
+									},
+									{
+										son_name: '防晒衫',
+										imgurl: 'http://img.haodanku.com/99d63b5ef04f0599ef94a71b1a247fef-600'
+									},
+									{
+										son_name: '露肩上衣',
+										imgurl: 'http://img.haodanku.com/a39d41be029747367e3889ea195043b1-600'
+									},
+									{
+										son_name: '长袖T恤',
+										imgurl: 'http://img.haodanku.com/d0ae23ec9b6d46e16bd2e0e924b2bd83-600'
+									}
+								]
+							},
+							{
+								next_name: '内搭',
+								info: [{
+										son_name: '喇叭袖',
+										imgurl: 'http://img.haodanku.com/6d8739d3e2aba86cfe98c3d8c631cb18-600'
+									},
+									{
+										son_name: '开衫',
+										imgurl: 'http://img.haodanku.com/051f12a2106ca222a4a651ef556419b2-600'
+									},
+									{
+										son_name: '打底毛衣',
+										imgurl: 'http://img.haodanku.com/d93f276b06e1aa4d9f5a7c4718ca675d-600'
+									},
+									{
+										son_name: '毛衣',
+										imgurl: 'http://img.haodanku.com/5ae75e2e972aec9126ac7ef6e44bd279-600'
+									},
+									{
+										son_name: '针织衫',
+										imgurl: 'http://img.haodanku.com/d989f5485e411a23b53d903787e9e8ae-600'
+									},
+									{
+										son_name: '高领',
+										imgurl: 'http://img.haodanku.com/226f1370ec92bd4804621851e4a45cd4-600'
+									}
+								]
+							},
+							{
+								next_name: '外套',
+								info: [{
+										son_name: '卫衣',
+										imgurl: 'http://img.haodanku.com/2329f94b4030aa27e819e159d64969c4-600'
+									},
+									{
+										son_name: '夹克',
+										imgurl: 'http://img.haodanku.com/ab499244178c525025d8a3e1ff4ed36e-600'
+									},
+									{
+										son_name: '棉服',
+										imgurl: 'http://img.haodanku.com/6d3898d409060a49ebc6a80c150d15b2-600'
+									},
+									{
+										son_name: '毛呢',
+										imgurl: 'http://img.haodanku.com/5b397df30169b79af64c569606b7e0af-600'
+									},
+									{
+										son_name: '牛仔',
+										imgurl: 'http://img.haodanku.com/38a001153e2f30933f3cae16f2b2a171-600'
+									},
+									{
+										son_name: '皮衣',
+										imgurl: 'http://img.haodanku.com/78c7fcecea8eaf4b329002b3308b3545-600'
+									},
+									{
+										son_name: '短外套',
+										imgurl: 'http://img.haodanku.com/26a08a44cce036a5cf49a3322e4cbf37-600'
+									},
+									{
+										son_name: '羽绒',
+										imgurl: 'http://img.haodanku.com/8b319845442d1ca43866388b3cdc9008-600'
+									},
+									{
+										son_name: '西装',
+										imgurl: 'http://img.haodanku.com/8760d56b968fff5f4542cba45398f911-600'
+									},
+									{
+										son_name: '风衣',
+										imgurl: 'http://img.haodanku.com/fce2eacae26fdd2be1e56319570db29e-600'
+									},
+									{
+										son_name: '马甲',
+										imgurl: 'http://img.haodanku.com/72c6ef4b40de18dddb9ae5dd38a9a051-600'
+									}
+								]
+							},
+							{
+								next_name: '裤子',
+								info: [{
+										son_name: '休闲裤',
+										imgurl: 'http://img.haodanku.com/047d30183d119f6805767a2649e05047-600'
+									},
+									{
+										son_name: '哈伦裤',
+										imgurl: 'http://img.haodanku.com/a1711789779fbd5c921fe1672619879f-600'
+									},
+									{
+										son_name: '棉麻裤',
+										imgurl: 'http://img.haodanku.com/a3e99f528f0cf163b96b0f6090226364-600'
+									},
+									{
+										son_name: '牛仔裤',
+										imgurl: 'http://img.haodanku.com/d1c7bf2b3a3d52047bf2bba87527ce2c-600'
+									},
+									{
+										son_name: '短裤',
+										imgurl: 'http://img.haodanku.com/d370086ea3d2a9c4ba569cfb8daf0d8e-600'
+									},
+									{
+										son_name: '破洞牛仔裤',
+										imgurl: 'http://img.haodanku.com/82462d589beb34111e9fccf66c170c7d-600'
+									},
+									{
+										son_name: '裤子',
+										imgurl: 'http://img.haodanku.com/049ea9c85a7b917eb9f0844df3910d4b-600'
+									},
+									{
+										son_name: '阔腿裤',
+										imgurl: 'http://img.haodanku.com/d59ec97908e5f2a3af232cbb23c54f31-600'
+									}
+								]
+							}
+						]
+					},
+
+					{
+						cid: 10,
 						main_name: '男装',
 						data: [{
 								next_name: '内搭',
@@ -401,7 +2359,7 @@
 						]
 					},
 					{
-						cid: 3,
+						cid: 11,
 						main_name: '内衣',
 						data: [{
 								next_name: '内衣',
@@ -514,7 +2472,7 @@
 						]
 					},
 					{
-						cid: 4,
+						cid: 12,
 						main_name: '美妆',
 						data: [{
 								next_name: '个人护理',
@@ -799,7 +2757,7 @@
 						]
 					},
 					{
-						cid: 5,
+						cid: 13,
 						main_name: '配饰',
 						data: [{
 								next_name: '帽子',
@@ -896,7 +2854,7 @@
 						]
 					},
 					{
-						cid: 6,
+						cid: 14,
 						main_name: '鞋品',
 						data: [{
 								next_name: '男鞋',
@@ -1002,18 +2960,25 @@
 					},
 
 
-				]
+				],
+				categoryId: 1
 
 			}
 		},
 		methods: {
-// 分类条目点击
-			toCategory(item) {
-
-				uni.showModal({
-					title: '温馨提示',
-					content: '点击条目数据 = ' + JSON.stringify(item)
-				})
+			// 分类切换显示
+			showCategory(item) {
+				this.categoryId = item.cid
+				console.log(item);
+			},
+			scroll(){
+				
+			},
+			upper(){
+				
+			},
+			lower(){
+				
 			}
 		}
 	}
@@ -1021,12 +2986,92 @@
 
 <style lang="scss" scoped>
 	.category {
-		width: 94%;
-		height: 613px;
+	
 		border-radius: 12px;
 		border: 1px solid rgba(255, 255, 255, 0.56);
 		background: linear-gradient(0deg, #FFF 91.87%, rgba(255, 255, 255, 0.65) 99.6%);
 		backdrop-filter: blur(5.5px);
 		margin: 0 auto;
+		display: flex;
+
+		.scroll-Y {
+			height: 613px;
+		}
+
+		&_left {
+			width: 192rpx;
+			height: 100%;
+			background: rgba(242, 244, 247, 0.50);
+
+
+
+			.row {
+				text-align: center;
+				height: 88rpx;
+				line-height: 88rpx;
+				position: relative;
+				color: #6D746B;
+				font-family: PingFang SC;
+				font-size: 24rpx;
+				font-weight: 400;
+			}
+
+			.active {
+
+				border-radius: 0 0px 0px 24rpx;
+				background: #FFF;
+				color: #293226;
+				font-size: 24rpx;
+			}
+
+			.active::after {
+				content: "";
+				display: block;
+				width: 8rpx;
+				height: 30rpx;
+				background: #0F1E0A;
+				position: absolute;
+				left: 0;
+				top: 50%;
+				transform: translateY(-50%);
+			}
+		}
+
+		&_right {
+			width: calc(100% - 192rpx);
+			border-radius: 12px;
+			border: 1px solid rgba(255, 255, 255, 0.56);
+			background: linear-gradient(0deg, #FFF 91.87%, rgba(255, 255, 255, 0.65) 99.6%);
+			backdrop-filter: blur(5.5px);
+
+			.name {
+				color: #0F1E0A;
+				font-family: PingFang SC;
+				font-size: 24rpx;
+				font-weight: 400;
+				padding: 22rpx 0 16rpx 24rpx;
+			}
+
+			.product {
+				display: flex;
+				flex-wrap: wrap;
+				padding-left: 24rpx;
+				.item {
+					width: calc(100% / 3);
+					
+					.image {
+						width: 148rpx;
+						height: 196rpx;
+					}
+
+					.title {
+						color: #000;
+						text-align: center;
+						font-family: PingFang SC;
+						font-size: 20rpx;
+					}
+				}
+			}
+		}
 	}
 </style>

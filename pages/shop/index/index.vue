@@ -47,6 +47,8 @@
 				<goodsIndex v-if="bIndex==0"></goodsIndex>
 				<!-- 店铺分类 -->
 				<shopCategory v-if="bIndex==1"></shopCategory>
+				<!-- 优惠券 -->
+				<coupon v-if="bIndex==2"></coupon>
 			</view>
 		</view>
 		<!-- 店铺底部bar -->
@@ -58,18 +60,20 @@
 	import toolbars from '../components/toolbars/toolbars.vue'
 	import goodsIndex from '../goods/index/index.vue'
 	import shopCategory from '../category/index.vue'
+	import coupon from '../coupon/index.vue'
 	export default {
 		components: {
 			toolbars,
 			goodsIndex,
-			shopCategory
+			shopCategory,
+			coupon
 		},
 		data() {
 			return {
 				childToParent: '',
 				followed: false,
 				pIndex: 0,
-				bIndex: 1
+				bIndex: 2
 			}
 		},
 		methods: {
@@ -231,7 +235,7 @@
 
 		.page_bg {
 			background: #F2F4F7;
-			min-height: 30vh;
+			// min-height: 30vh;
 		}
 
 		.page_content {
