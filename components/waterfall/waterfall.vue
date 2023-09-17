@@ -3,7 +3,7 @@
 		<view class="water-flow-column" :style="{ 'margin-right': columnGap + 'px' }" v-for="(col, c) in colunmList"
 			:key="c">
 			<view class="item" :id="col.id" style="width: 100%;">
-				<view v-for="(item, index) in col.list" :key="index" class="item_content"
+				<view v-for="(item, index) in col.list" :key="index" class="item_content" 
 					:style="{ 'margin-bottom': columnGap + 'px', background: item.background }" @click="choose(item)">
 					<view class="water-flow-image">
 						<image mode="widthFix" :lazy-load="true" :src="item.image" style="width: 100%;">
@@ -114,7 +114,7 @@
 		methods: {
 			// 选中点击
 			choose(item) {
-				uni.$u.route('pages/secondary/product_details', {
+				uni.$u.route('pages/goods/index', {
 					tokenId: item.tokenId,
 					chainId: item.credential.chainId,
 					contract: item.credential.contractAddress,

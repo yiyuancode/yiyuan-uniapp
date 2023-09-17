@@ -121,6 +121,12 @@
 						name: '新品榜'
 					}
 				],
+				bIndex:0
+			}
+		},
+		methods:{
+			onClick(index){
+				this.bIndex=index
 			}
 		}
 	}

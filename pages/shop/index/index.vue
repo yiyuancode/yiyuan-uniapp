@@ -73,7 +73,7 @@
 				childToParent: '',
 				followed: false,
 				pIndex: 0,
-				bIndex: 2
+				bIndex: 0
 			}
 		},
 		methods: {
@@ -86,6 +86,7 @@
 			},
 
 			updateValue(index) {
+				console.log(index)
 				this.bIndex = index
 			}
 
@@ -236,14 +237,15 @@
 		.page_bg {
 			background: #F2F4F7;
 			// min-height: 30vh;
+			position: relative;
 		}
 
 		.page_content {
-			position: relative;
+			position: absolute;
 			top: 50%;
 			left: 50%;
 			width: calc(100% - 4%);
-			transform: translate(-50%, -9%);
+			transform: translate(-50%, -1%);
 
 
 		}
