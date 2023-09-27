@@ -5,7 +5,7 @@
 				<image src="@/static/images/common/user_bg.png" mode=""></image>
 			</view>
 			<view class="user">
-				<view class="user_group" v-if="!noLogin">
+				<view class="user_group" v-if="!noLogin" @click="login">
 					<view class="avatar">
 						<u-avatar size="60" :src="avatar"></u-avatar>
 					</view>
@@ -13,7 +13,7 @@
 						请登录
 					</view>
 				</view>
-				<view class="user_group">
+				<view class="user_group" v-if="noLogin">
 					<view class="avatar">
 						<u-avatar size="60" :src="avatar"></u-avatar>
 					</view>
@@ -29,7 +29,7 @@
 						签到
 					</view>
 				</view>
-				<view class="user_data">
+				<view class="user_data" v-if="noLogin">
 					<view class="group">
 						<view class="value">
 							56
@@ -63,6 +63,41 @@
 						</view>
 					</view>
 				</view>
+				<view class="user_data" v-if="!noLogin">
+					<view class="group">
+						<view class="value">
+							-
+						</view>
+						<view class="lable">
+							我的收藏
+						</view>
+					</view>
+					<view class="group">
+						<view class="value">
+							-
+						</view>
+						<view class="lable">
+							购物车
+						</view>
+					</view>
+					<view class="group">
+						<view class="value">
+							-
+						</view>
+						<view class="lable">
+							我的足迹
+						</view>
+					</view>
+					<view class="group">
+						<view class="value">
+							-
+						</view>
+						<view class="lable">
+							我的卡券
+						</view>
+					</view>
+				</view>
+
 			</view>
 
 		</view>
@@ -110,6 +145,50 @@
 				</view>
 			</view>
 		</view>
+		<view class="tools">
+			<view class="title">
+				服务与工具
+			</view>
+			<view class="group">
+				<view class="lable">
+					<view class="icon">
+						<image src="@/static/images/icon/tooladdress.png" mode=""></image>
+					</view>
+					<view class="text">
+						管理地址
+					</view>
+				</view>
+				<view class="arrow">
+					<image src="@/static/images/icon/arrow.png" mode=""></image>
+				</view>
+			</view>
+			<view class="group">
+				<view class="lable">
+					<view class="icon">
+						<image src="@/static/images/icon/attention.png" mode=""></image>
+					</view>
+					<view class="text">
+						我的关注
+					</view>
+				</view>
+				<view class="arrow">
+					<image src="@/static/images/icon/arrow.png" mode=""></image>
+				</view>
+			</view>
+			<view class="group">
+				<view class="lable">
+					<view class="icon">
+						<image src="@/static/images/icon/settlein.png" mode=""></image>
+					</view>
+					<view class="text">
+						商家入驻
+					</view>
+				</view>
+				<view class="arrow">
+					<image src="@/static/images/icon/arrow.png" mode=""></image>
+				</view>
+			</view>
+		</view>
 		<BottomToolBar></BottomToolBar>
 	</view>
 </template>
@@ -123,11 +202,15 @@
 		data() {
 			return {
 				avatar: "/static/images/user/avatar.png",
-				noLogin: true
+				noLogin: false
 			}
 		},
 		methods: {
-
+			login() {
+				uni.navigateTo({
+					url: "/pages/user/login/index"
+				})
+			}
 		}
 	}
 </script>
@@ -135,6 +218,7 @@
 <style lang="scss" scoped>
 	.container {
 		background: #F5F5F5;
+		min-height: 100vh;
 
 		.head {
 			position: relative;
@@ -256,16 +340,80 @@
 				}
 
 			}
-			&_status{
+
+			&_status {
 				display: flex;
-				.item{
+				margin-top: 24rpx;
+
+				.item {
 					width: calc(100% / 4);
 					text-align: center;
-					.icon{
-						image{
+
+					.icon {
+						image {
 							width: 80rpx;
 							height: 80rpx;
 						}
+					}
+
+					.lable {
+						color: #293226;
+						font-family: PingFang SC;
+						font-size: 24rpx;
+						font-weight: 500;
+					}
+				}
+			}
+		}
+
+		.tools {
+			position: relative;
+			top: -120rpx;
+			width: 94%;
+			margin: 0 auto;
+			padding: 32rpx 26rpx;
+			box-sizing: border-box;
+			border-radius: 8px;
+			background: #FFF;
+
+			.title {
+				color: #0F1E0A;
+				font-family: PingFang SC;
+				font-size: 28rpx;
+				font-weight: 400;
+			}
+
+			.group {
+				display: flex;
+				justify-content: space-between;
+				margin-top: 42rpx;
+
+				.lable {
+					display: flex;
+					align-items: center;
+
+					.icon {
+						margin-right: 16rpx;
+
+						image {
+							width: 36rpx;
+							height: 36rpx;
+							vertical-align: middle;
+						}
+					}
+
+					.text {
+						color: #293226;
+						font-family: PingFang SC;
+						font-size: 24rpx;
+						font-weight: 400;
+					}
+				}
+
+				.arrow {
+					image {
+						width: 12rpx;
+						height: 20rpx;
 					}
 				}
 			}

@@ -95,6 +95,15 @@
 				"enablePullDownRefresh": false
 			}
 		
+		},
+		{
+			"path": "pages/user/login/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "登录",
+				"enablePullDownRefresh": false
+			}
+		
 		}
 	],
 	"subPackages": [{
