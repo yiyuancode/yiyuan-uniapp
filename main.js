@@ -6,9 +6,12 @@ import './uni.promisify.adaptor'
 Vue.config.productionTip = false;
 // 引入uView
 import uView from "uview-ui";
+// 引入store
+import store from './store'
 Vue.use(uView);
 App.mpType = 'app'
 const app = new Vue({
+	store,
 	...App
 })
 // 定义全局方法
