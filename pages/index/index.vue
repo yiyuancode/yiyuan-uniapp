@@ -163,19 +163,19 @@
 				</WaterfallFlow>
 			</view>
 		</view>
-		<BottomToolBar></BottomToolBar>
+		<tabBar></tabBar>
 	</view>
 </template>
 
 <script>
 	const data = require('./data.json');
 	import user from "@/api/user.js";
-	import BottomToolBar from '@/components/d-BottomToolBar/index.vue';
+	import tabBar from '@/components/tabBar/index.vue';
 	import homeHead from '@/components/home/top-shop-content.vue'
 	import WaterfallFlow from '@/components/waterfall/waterfall.vue'
 	export default {
 		components: {
-			BottomToolBar,
+			tabBar,
 			homeHead,
 			WaterfallFlow
 		},

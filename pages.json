@@ -104,6 +104,33 @@
 				"enablePullDownRefresh": false
 			}
 		
+		},
+		{
+			"path": "pages/category/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "分类",
+				"enablePullDownRefresh": false
+			}
+		
+		},
+		{
+			"path": "pages/cart/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "购物车",
+				"enablePullDownRefresh": false
+			}
+		
+		},
+		{
+			"path": "pages/message/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "消息",
+				"enablePullDownRefresh": false
+			}
+		
 		}
 	],
 	"subPackages": [{

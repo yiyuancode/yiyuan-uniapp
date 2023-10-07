@@ -189,15 +189,15 @@
 				</view>
 			</view>
 		</view>
-		<BottomToolBar></BottomToolBar>
+		<tabBar></tabBar>
 	</view>
 </template>
 
 <script>
-	import BottomToolBar from '@/components/d-BottomToolBar/index.vue';
+	import tabBar from '@/components/tabBar/index.vue';
 	export default {
 		components: {
-			BottomToolBar
+			tabBar
 		},
 		data() {
 			return {
