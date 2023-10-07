@@ -1,48 +1,42 @@
 <template>
-  <!-- 底部导航 -->
-  <view>
-    <u-tabbar :value="activeTab" @change="handleChangeTab" :fixed="true" :placeholder="true"
-      :safeAreaInsetBottom="true" :activeColor="444942" :zIndex="999">
-      <u-tabbar-item :text="item.name" :icon="getIcon(item, index)" v-for="(item, index) in barList"
-        :key="index" :active="activeTab === index"></u-tabbar-item>
-    </u-tabbar>
-  </view>
+	<!-- 底部导航 -->
+	<view>
+		<u-tabbar :value="activeTab" @change="handleChangeTab" :fixed="true" :placeholder="true"
+			:safeAreaInsetBottom="true" :activeColor="444942" :zIndex="999">
+			<u-tabbar-item :text="item.name" :icon="getIcon(item, index)" v-for="(item, index) in barList" :key="index"
+				:active="activeTab === index"></u-tabbar-item>
+		</u-tabbar>
+	</view>
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex';
+	import {
+		mapState,
+		mapMutations
+	} from 'vuex';
 
-export default {
-  computed: {
-    ...mapState('tabBar', ['activeTab', 'barList'])
-  },
-  methods: {
-    ...mapMutations('tabBar', ['updateActiveTab', 'updateBarList']),
-    handleChangeTab(tab) {
-      const previousTab = this.activeTab;
-      const selectedTab = this.barList[tab];
+	export default {
+		computed: {
+			...mapState('tabBar', ['activeTab', 'barList'])
+		},
+		methods: {
+			...mapMutations('tabBar', ['updateActiveTab', 'updateBarList']),
+			handleChangeTab(tab) {
+				const previousTab = this.activeTab;
+				const selectedTab = this.barList[tab];
 
-      // 更新上一个选项的点击状态
-      if (previousTab !== null) {
-        const previousTabItem = this.barList[previousTab];
-        previousTabItem.image = previousTabItem.unchecked;
-      }
-
-      // 更新当前选项的点击状态
-      selectedTab.image = selectedTab.checked;
-      this.updateActiveTab(tab);
-      uni.navigateTo({
-        url: selectedTab.path
-      });
-      this.updateBarList([...this.barList]); // 创建副本以触发视图更新
-    },
-    getIcon(item, index) {
-      return item.image;
-    }
-  }
-};
+				this.updateActiveTab(tab);
+				uni.switchTab({
+					url: selectedTab.path
+				});
+			},
+			getIcon(item, index) {
+				return this.activeTab === index ? item.selectedIconPath : item.iconPath
+			}
+		}
+	};
 </script>
-<style lang="scss" >
+<style lang="scss">
 	.d-footer {
 		position: fixed;
 		bottom: 0;

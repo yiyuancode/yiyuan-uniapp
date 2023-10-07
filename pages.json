@@ -49,7 +49,7 @@
 				"navigationBarTitleText": "限时抢购",
 				"enablePullDownRefresh": false
 			}
-		
+
 		},
 		{
 			"path": "pages/marketing/billionSubsidy",
@@ -58,7 +58,7 @@
 				"navigationBarTitleText": "百亿补贴",
 				"enablePullDownRefresh": false
 			}
-		
+
 		},
 		{
 			"path": "pages/shop/index/index",
@@ -67,7 +67,7 @@
 				"navigationBarTitleText": "店铺首页",
 				"enablePullDownRefresh": false
 			}
-		
+
 		},
 		{
 			"path": "pages/goods/index",
@@ -76,7 +76,7 @@
 				"navigationBarTitleText": "产品首页",
 				"enablePullDownRefresh": false
 			}
-		
+
 		},
 		{
 			"path": "pages/user/index/index",
@@ -85,7 +85,7 @@
 				"navigationBarTitleText": "个人中心",
 				"enablePullDownRefresh": false
 			}
-		
+
 		},
 		{
 			"path": "pages/user/order/index",
@@ -94,7 +94,7 @@
 				"navigationBarTitleText": "订单提交",
 				"enablePullDownRefresh": false
 			}
-		
+
 		},
 		{
 			"path": "pages/user/login/index",
@@ -103,7 +103,7 @@
 				"navigationBarTitleText": "登录",
 				"enablePullDownRefresh": false
 			}
-		
+
 		},
 		{
 			"path": "pages/category/index",
@@ -112,7 +112,7 @@
 				"navigationBarTitleText": "分类",
 				"enablePullDownRefresh": false
 			}
-		
+
 		},
 		{
 			"path": "pages/cart/index",
@@ -121,7 +121,7 @@
 				"navigationBarTitleText": "购物车",
 				"enablePullDownRefresh": false
 			}
-		
+
 		},
 		{
 			"path": "pages/message/index",
@@ -130,7 +130,7 @@
 				"navigationBarTitleText": "消息",
 				"enablePullDownRefresh": false
 			}
-		
+
 		}
 	],
 	"subPackages": [{
@@ -138,12 +138,33 @@
 		"pages": [{
 			"path": "user/user"
 		}]
-	}],	
+	}],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "一源商城",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"color": "#999",
+		"selectedColor": "#0aa671",
+		"borderStyle": "white",
+		"list": [{
+				"pagePath": "pages/index/index"
+			},
+			{
+				"pagePath": "pages/category/index"
+			},
+			{
+				"pagePath": "pages/cart/index"
+			},
+			{
+				"pagePath": "pages/message/index"
+			},
+			{
+				"pagePath": "pages/user/index/index"
+			}
+		]
 	},
 	"uniIdRouter": {}
 }

@@ -1,7 +1,7 @@
 <script>
 	export default {
 		onLaunch: function() {
-	
+
 			console.log('App Launch')
 			setTimeout(() => {
 				uni.loadFontFace({
@@ -29,7 +29,10 @@
 		},
 		onShow: function() {
 			console.log('App Show')
-
+			//隐藏pages.json里配置的导航栏，使用封装的tabbar组件
+			uni.hideTabBar({
+				animation: false
+			})
 		},
 		onHide: function() {
 			console.log('App Hide')
