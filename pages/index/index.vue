@@ -283,28 +283,7 @@
 				receive: [{
 					image: '/static/images/product/p4.png'
 				}],
-				listTab: [{
-					name: '精选推荐',
-				}, {
-					name: '0元到家',
-					badge: {
-						isDot: true
-					}
-				}, {
-					name: '百亿补贴'
-				}, {
-					name: '周边出行'
-				}, {
-					name: '音乐'
-				}, {
-					name: '美食'
-				}, {
-					name: '文化'
-				}, {
-					name: '财经'
-				}, {
-					name: '手工'
-				}],
+				listTab: [],
 				baseList: [{
 						image: "/static/images/product/p5.png",
 						title: '乔丹同款绿色时髦凉爽T恤衬衫1',
@@ -353,6 +332,7 @@
 		},
 		onLoad() {
 			this.getList();
+			this.getListTab()
 		},
 		onReachBottom() {
 			this.page++;
@@ -361,6 +341,13 @@
 
 
 		methods: {
+			// 产品tab
+			getListTab(){
+				uni.$u.http.get('https://yicode.net/app-api-dev/mam/activitiy/getIndexList').then(res=>{
+					
+					this.listTab=res.data.data
+				})
+			},
 			// 限时抢购
 			flashSale() {
 				uni.navigateTo({

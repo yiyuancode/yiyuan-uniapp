@@ -330,7 +330,8 @@
 						尺寸
 					</view>
 					<view class="spec2">
-						<view class="item" v-for="(item,index) in 4" :key="index">
+						<view :class="spec2==index?'item active':'item'" v-for="(item,index) in 4" :key="index"
+							@click="spec2 = index">
 							S
 						</view>
 					</view>
@@ -344,11 +345,10 @@
 					</view>
 				</view>
 				<view class="payment">
-					<navigator  url='/pages/user/order/index'>
-						
-					<view class="button">
-						立即支付
-					</view>
+					<navigator url='/pages/user/order/index'>
+						<view class="button">
+							立即支付
+						</view>
 					</navigator>
 				</view>
 			</view>
@@ -364,7 +364,7 @@
 					'https://cdn.uviewui.com/uview/swiper/swiper2.png',
 					'https://cdn.uviewui.com/uview/swiper/swiper3.png',
 				],
-				number:1,
+				number: 1,
 				src: '/static/images/goods/avatar.png',
 				pageIndex: 0,
 				albumWidth: 0,
@@ -374,7 +374,8 @@
 					'https://cdn.uviewui.com/uview/album/3.jpg',
 				],
 				showPopup: false,
-				spec1: 0
+				spec1: 0,
+				spec2: 0
 			}
 		},
 		methods: {
@@ -384,8 +385,8 @@
 			check(index) {
 				this.spec1 = index
 			},
-			close(){
-				this.showPopup=false
+			close() {
+				this.showPopup = false
 			}
 		}
 	}
@@ -1339,7 +1340,7 @@
 					font-family: PingFang SC;
 					font-size: 28rpx;
 					font-weight: 400;
-					
+
 				}
 
 				.spec1 {
@@ -1367,73 +1368,83 @@
 						background: rgba(190, 240, 0, 0.05);
 					}
 				}
-				.spec2{
+
+				.spec2 {
 					margin-top: 24rpx;
 					display: flex;
 					margin-bottom: 32rpx;
-					.item{
+
+					.item {
 						width: 98rpx;
 						height: 54rpx;
 						text-align: center;
 						line-height: 54rpx;
-						color:  #0F1E0A;
+						color: #0F1E0A;
 						font-family: PingFang SC;
 						font-size: 24rpx;
 						font-weight: 400;
 						border-radius: 2px;
 						border: 1px solid #F2F4F7;
 						margin-right: 24rpx;
-						
+
 					}
-					.active{
-						border: 1px solid  #BEF000;
+
+					.active {
+						border: 1px solid #BEF000;
 						background: rgba(190, 240, 0, 0.05);
 					}
 				}
-				.spec3{
+
+				.spec3 {
 					padding-top: 32rpx;
-					.number_box{
+
+					.number_box {
 						float: right;
 						margin-right: 18rpx;
+
 						/deep/ .u-number-box__minus {
 							background-color: #ffffff !important;
-							border: 1px solid  #F2F4F7;
+							border: 1px solid #F2F4F7;
 						}
+
 						/deep/ .u-number-box__input {
 							background-color: #ffffff !important;
-							border: 1px solid  #F2F4F7;
+							border: 1px solid #F2F4F7;
 							margin: 0 10rpx;
 						}
+
 						/deep/ .u-number-box__plus {
 							background-color: #ffffff !important;
-							border: 1px solid  #F2F4F7;
-}
-				
+							border: 1px solid #F2F4F7;
+						}
+
 					}
-					
+
 				}
 			}
-			.payment{
+
+			.payment {
 				padding-bottom: calc(env(safe-area-inset-bottom) / 2);
-			background: #FFF;
-			box-shadow: 0px -2px 4px 0px rgba(15, 30, 10, 0.03);
-			min-height: 190rpx;
-			width: 100%;
-			position: fixed;
-			.button{
-				width: 90%;
-				height: 88rpx;
-				background-color: rgba(249, 78, 5, 1);
-				text-align: center;
-				margin: 0 auto;
-				margin-top: 20.4rpx;
-				line-height: 88rpx;
-				color:  #FFF;
-				font-family: PingFang SC;
-				font-size: 32rpx;
-				font-weight: 400;
-				border-radius: 32rpx;
-			}
+				background: #FFF;
+				box-shadow: 0px -2px 4px 0px rgba(15, 30, 10, 0.03);
+				min-height: 190rpx;
+				width: 100%;
+				position: fixed;
+
+				.button {
+					width: 90%;
+					height: 88rpx;
+					background-color: rgba(249, 78, 5, 1);
+					text-align: center;
+					margin: 0 auto;
+					margin-top: 20.4rpx;
+					line-height: 88rpx;
+					color: #FFF;
+					font-family: PingFang SC;
+					font-size: 32rpx;
+					font-weight: 400;
+					border-radius: 32rpx;
+				}
 			}
 		}
 	}
