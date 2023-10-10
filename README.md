@@ -7,3 +7,6 @@ npm install -g yarn
 前端框架uview
 网址：[https://www.uviewui.com/](https://www.uviewui.com/)
 vue2.0 node版本是16.20.0
+
+修改api地址
+config/request.js
