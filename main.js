@@ -8,12 +8,15 @@ Vue.config.productionTip = false;
 import uView from "uview-ui";
 // 引入store
 import store from './store'
+
 Vue.use(uView);
 App.mpType = 'app'
 const app = new Vue({
 	store,
 	...App
 })
+// 引入请求封装，将app参数传递到配置中
+require('./config/request.js')(app)
 // 定义全局方法
 // uni顶部高度
 Vue.prototype.$uniHeight = function() {

@@ -169,7 +169,6 @@
 
 <script>
 	const data = require('./data.json');
-	import user from "@/api/user.js";
 	import tabBar from '@/components/tabBar/index.vue';
 	import homeHead from '@/components/home/top-shop-content.vue'
 	import WaterfallFlow from '@/components/waterfall/waterfall.vue'
