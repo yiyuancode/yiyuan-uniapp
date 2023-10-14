@@ -16,7 +16,7 @@
 				</view>
 			</view>
 		</view>
-		<view class="address">
+		<view class="address" @click="toAddress">
 			<view class="group">
 				<view class="icon">
 					<image src="@/static/images/icon/address.png" mode=""></image>
@@ -177,6 +177,9 @@
 		methods: {
 			checkPay(index) {
 				this.payIndex = index
+			},
+			toAddress(){
+				uni.$u.route('/pages/user/address/index');
 			}
 		}
 	}

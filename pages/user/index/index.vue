@@ -106,7 +106,7 @@
 				<view class="title">
 					我的订单
 				</view>
-				<view class="all_order">
+				<view class="all_order" @click="allOrder">
 					全部订单 >
 				</view>
 			</view>
@@ -210,6 +210,10 @@
 				uni.navigateTo({
 					url: "/pages/user/login/index"
 				})
+			},
+			// 全部订单
+			allOrder(){
+				uni.$u.route('/pages/user/order/list');
 			}
 		}
 	}

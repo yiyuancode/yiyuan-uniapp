@@ -97,6 +97,15 @@
 
 		},
 		{
+			"path": "pages/user/order/list",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "全部订单",
+				"enablePullDownRefresh": false
+			}
+		
+		},
+		{
 			"path": "pages/user/login/index",
 			"style": {
 				"navigationStyle": "custom",
@@ -104,6 +113,24 @@
 				"enablePullDownRefresh": false
 			}
 
+		},
+		{
+			"path": "pages/user/address/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "收货地址",
+				"enablePullDownRefresh": false
+			}
+		
+		},
+		{
+			"path": "pages/user/address/add",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "添加地址",
+				"enablePullDownRefresh": false
+			}
+		
 		},
 		{
 			"path": "pages/category/index",

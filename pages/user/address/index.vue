@@ -70,7 +70,7 @@ export default {
 		},
 		toAddSite(){
 			uni.navigateTo({
-			    url: '/pages/template/address/addSite'
+			    url: '/pages/user/address/add'
 			});
 		}
 	}
