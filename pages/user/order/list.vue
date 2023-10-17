@@ -1,15 +1,14 @@
 <template>
-	<view class="container" >
-		<view class="wrap" :style="{'padding-top':$uniHeight().top+'px'}" >
+	<view class="container">
+		<view class="wrap" :style="{'padding-top':($uniHeight().top+37)+'px'}">
 			<view class="">
 				<u-navbar leftText="返回" title="我的订单" :safeAreaInsetTop="true">
 					<view class="u-nav-slot" slot="left">
 						<u-icon name="arrow-left" size="19"></u-icon>
-						<u-line direction="column" :hairline="false" length="16" margin="0 8px"></u-line>
 					</view>
 				</u-navbar>
 			</view>
-			<view class="u-tabs-box" >
+			<view class="u-tabs-box">
 				<u-tabs activeColor="#f29100" ref="tabs" :list="list" :current="current" @change="change"
 					:is-scroll="false" swiperWidth="750"></u-tabs>
 			</view>
@@ -23,7 +22,6 @@
 									<view class="left">
 										<u-icon name="home" :size="30" color="rgb(94,94,94)"></u-icon>
 										<view class="store">{{ res.store }}</view>
-										<u-icon name="arrow-right" color="rgb(203,203,203)" :size="26"></u-icon>
 									</view>
 									<view class="right">{{ res.deal }}</view>
 								</view>
@@ -228,7 +226,7 @@
 					},
 					{
 						id: 3,
-						store: '三星旗舰店',
+						store: 'ONLY官方旗舰店',
 						deal: '交易失败',
 						goodsList: [{
 								goodsUrl: '//img11.360buyimg.com/n7/jfs/t1/94448/29/2734/524808/5dd4cc16E990dfb6b/59c256f85a8c3757.jpg',
@@ -250,7 +248,7 @@
 					},
 					{
 						id: 4,
-						store: '三星旗舰店',
+						store: 'ONLY官方旗舰店',
 						deal: '交易失败',
 						goodsList: [{
 								goodsUrl: '//img10.360buyimg.com/n7/jfs/t22300/31/1505958241/171936/9e201a89/5b2b12ffNe6dbb594.jpg!q90.jpg',
@@ -272,7 +270,7 @@
 					},
 					{
 						id: 5,
-						store: '三星旗舰店',
+						store: 'ONLY官方旗舰店',
 						deal: '交易成功',
 						goodsList: [{
 							goodsUrl: '//img12.360buyimg.com/n7/jfs/t1/52408/35/3554/78293/5d12e9cfEfd118ba1/ba5995e62cbd747f.jpg!q90.jpg',
@@ -285,6 +283,8 @@
 					}
 				],
 				list: [{
+						name: '全部订单'
+					}, {
 						name: '待付款'
 					},
 					{
@@ -391,7 +391,7 @@
 	/* #ifndef H5 */
 	page {
 		height: 100%;
-		background-color: #f2f2f2;
+		background-color: #F5F5F5;
 	}
 
 	/* #endif */
@@ -402,7 +402,7 @@
 		width: 710rpx;
 		background-color: #ffffff;
 		margin: 20rpx auto;
-		border-radius: 20rpx;
+		border-radius: 24rpx;
 		box-sizing: border-box;
 		padding: 20rpx;
 		font-size: 28rpx;
@@ -417,13 +417,18 @@
 
 				.store {
 					margin: 0 10rpx;
-					font-size: 32rpx;
-					font-weight: bold;
+					color:  #0F1E0A;
+					font-family: PingFang SC;
+					font-size: 28rpx;
+					font-weight: 400;
 				}
 			}
 
 			.right {
-				color: $u-warning-dark;
+				// color:  #939692;
+				font-family: PingFang SC;
+				font-size: 24rpx;
+				font-weight: 500;
 			}
 		}
 
@@ -443,8 +448,11 @@
 
 			.content {
 				.title {
-					font-size: 28rpx;
 					line-height: 50rpx;
+					color:  #0F1E0A;
+					font-family: PingFang SC;
+					font-size: 24rpx;
+					font-weight: 400;
 				}
 
 				.type {
@@ -552,5 +560,20 @@
 
 	.swiper-item {
 		height: 100%;
+	}
+
+	/deep/ .u-status-bar {
+		background-color: transparent !important;
+	}
+
+	/deep/ .u-navbar__content {
+		background-color: transparent !important;
+	}
+
+	/deep/ .u-navbar__content__title {
+		color: #0F1E0A;
+		font-family: PingFang SC;
+		font-size: 32rpx;
+		font-weight: 600;
 	}
 </style>
