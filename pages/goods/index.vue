@@ -375,7 +375,8 @@
 				],
 				showPopup: false,
 				spec1: 0,
-				spec2: 0
+				spec2: 0,
+				followed:false
 			}
 		},
 		methods: {

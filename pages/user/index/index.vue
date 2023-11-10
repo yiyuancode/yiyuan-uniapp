@@ -149,7 +149,7 @@
 			<view class="title">
 				服务与工具
 			</view>
-			<view class="group">
+			<view class="group" @click="userAdress">
 				<view class="lable">
 					<view class="icon">
 						<image src="@/static/images/icon/tooladdress.png" mode=""></image>
@@ -209,6 +209,12 @@
 			login() {
 				uni.navigateTo({
 					url: "/pages/user/login/index"
+				})
+			},
+			// 用户地址
+			userAdress(){
+				uni.navigateTo({
+					url:"/pages/user/address/index"
 				})
 			},
 			// 全部订单
