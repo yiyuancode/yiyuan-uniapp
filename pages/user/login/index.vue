@@ -24,7 +24,7 @@
 				</view>
 				<view class="login_form">
 					<!-- 快捷登录 -->
-					<view  v-if="tabsIndex==0">
+					<view v-if="tabsIndex==0">
 						<u--form labelPosition="left" :model="form" :rules="rules" ref="uForm">
 							<u-form-item label="+86" prop="phone" borderBottom ref="item1">
 								<u--input v-model="form.phone" placeholder="请输入手机号" border="none"></u--input>
@@ -61,14 +61,14 @@
 
 					</view>
 					<!-- 账号密码登录 -->
-					<view  v-if="tabsIndex==1">
+					<view v-if="tabsIndex==1">
 						<u--form labelPosition="left" :model="form1" :rules="rules" ref="uForm">
 							<u-form-item label="+86" prop="phone" borderBottom ref="item1">
 								<u--input v-model="form.phone" placeholder="请输入手机号" border="none"></u--input>
 							</u-form-item>
-						<u-form-item  prop="passWord" borderBottom >
-							<u--input v-model="form.passWord" placeholder="填写密码" border="none"></u--input>
-						</u-form-item>
+							<u-form-item prop="passWord" borderBottom>
+								<u--input v-model="form.passWord" placeholder="填写密码" border="none"></u--input>
+							</u-form-item>
 						</u--form>
 						<view class="user_agreement">
 							<u-radio-group v-model="radiovalue1" @change="groupChange">
@@ -107,20 +107,27 @@
 				}],
 				tabsIndex: 0,
 				form: {
-					phone: '',
-					code: ''
+					phone: null,
+					code: null
 				},
-				form1:{
-					phone:'',
-					passWord:''
+				form1: {
+					phone: '',
+					passWord: ''
 				},
 				rules: {
-				 phone: [
-				          { required: true, message: '手机号码不能为空', trigger: 'blur' },
-				          { pattern: /^1\d{10}$/, message: '手机号码格式不正确', trigger: 'blur' }
-				        ]
+					phone: [{
+							required: true,
+							message: '手机号码不能为空',
+							trigger: 'blur'
+						},
+						{
+							pattern: /^1\d{10}$/,
+							message: '手机号码格式不正确',
+							trigger: 'blur'
+						}
+					]
 				},
-			
+
 				tips: "获取验证码",
 				disabled1: false,
 				radiolist1: [{
@@ -147,11 +154,20 @@
 			},
 			getCode() {
 				if (this.$refs.uCode.canGetCode) {
-					// 模拟向后端请求验证码
+
 					uni.showLoading({
 						title: '正在获取验证码'
 					})
+
 					setTimeout(() => {
+						let data = {
+							email: this.form.phone
+						}
+						uni.$u.http.post('/login/umUser/sendVerifyCode', data).then(res => {
+							console.log(res);
+						}).catch(err => {
+							console.log(err)
+						})
 						uni.hideLoading();
 						// 这里此提示会被this.start()方法中的提示覆盖
 						uni.$u.toast('验证码已发送');
@@ -164,14 +180,31 @@
 			},
 			// 快捷登录
 			loginForm() {
-				this.$refs.uForm.validate().then(res => {
-					uni.$u.toast('登录成功');
-					uni.navigateTo({
-						url:"/pages/user/index/index"
-					})
-				}).catch(errors => {
-					uni.$u.toast('校验失败')
+
+				let data = {
+					phoneOrEmail: this.form.phone,
+					code: this.form.code,
+					type: 1,
+					registryType: 2
+				}
+				uni.$u.http.post('/login/umUser', data).then(res => {
+					console.log(res);
+					this.$store.commit("setToken", {
+						'token': res.token
+					});
+				}).catch(err => {
+					console.log(err)
 				})
+				// this.$refs.uForm.validate().then(res => {
+				// 	uni.$u.toast('登录成功');
+				// 	uni.navigateTo({
+				// 		url:"/pages/user/index/index"
+				// 	})
+
+
+				// }).catch(errors => {
+				// 	uni.$u.toast(errors,'校验失败')
+				// })
 			}
 		}
 	}
