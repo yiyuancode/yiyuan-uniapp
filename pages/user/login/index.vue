@@ -97,6 +97,9 @@
 </template>
 
 <script>
+	import {
+		sendEmailCode
+	} from '@/config/api/user.js'
 	export default {
 		data() {
 			return {
@@ -163,11 +166,18 @@
 						let data = {
 							email: this.form.phone
 						}
-						uni.$u.http.post('/login/umUser/sendVerifyCode', data).then(res => {
-							console.log(res);
-						}).catch(err => {
-							console.log(err)
+						sendEmailCode({
+							email: this.form.phone
+						}).then((res) => {
+
+						}).catch(() => {
+
 						})
+						// uni.$u.http.post('/login/umUser/sendVerifyCode', data).then(res => {
+						// 	console.log(res);
+						// }).catch(err => {
+						// 	console.log(err)
+						// })
 						uni.hideLoading();
 						// 这里此提示会被this.start()方法中的提示覆盖
 						uni.$u.toast('验证码已发送');

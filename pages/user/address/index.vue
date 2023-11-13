@@ -21,7 +21,7 @@
 				<u-swipe-action>
 					<u-swipe-action-item :options="options1">
 						<view class="">
-
+						
 						</view>
 						<view class="">
 							<view class="bottom">
