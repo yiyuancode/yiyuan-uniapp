@@ -1,15 +1,22 @@
 import App from './App'
+// 引入uView
+import uView from "uview-ui";
+Vue.use(uView);
+
+// 引入store
+import store from '@/store'
+
+let vuexStore = require("@/store/$u.mixin.js");
+Vue.mixin(vuexStore);
+
+
 
 // #ifndef VUE3
 import Vue from 'vue'
 import './uni.promisify.adaptor'
 Vue.config.productionTip = false;
-// 引入uView
-import uView from "uview-ui";
-// 引入store
-import store from './store'
 
-Vue.use(uView);
+
 App.mpType = 'app'
 const app = new Vue({
 	store,
@@ -17,6 +24,7 @@ const app = new Vue({
 })
 // 引入请求封装，将app参数传递到配置中
 require('./config/request.js')(app)
+
 // 定义全局方法
 // uni顶部高度
 Vue.prototype.$uniHeight = function() {

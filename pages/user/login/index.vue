@@ -31,7 +31,6 @@
 							</u-form-item>
 							<u-form-item prop="code" labelWidth="80" borderBottom>
 								<u--input v-model="form.code" border="none" placeholder="填写验证码"></u--input>
-
 								<view class="code">
 									<u-code ref="uCode" @change="codeChange" keep-running start-text="获取验证码"></u-code>
 									<text @tap="getCode" :text="tips" class="u-page__code-text">{{tips}}</text>
@@ -39,15 +38,14 @@
 							</u-form-item>
 						</u--form>
 						<view class="user_agreement">
-							<u-radio-group v-model="radiovalue1" @change="groupChange">
-								<u-radio :customStyle="{marginBottom: '8px'}" v-for="(item, index) in radiolist1"
-									:key="index" :label="item.name" :name="item.name" @change="radioChange">
-								</u-radio>
-								<view class="agreement">
+							<u-checkbox-group :v-model="checkBox" placement="row" @change="checkboxChange">
+								<u-checkbox shape='circle'>
+								</u-checkbox>
+								<view class="agreement d-flex">
 									<text class="lable">我已阅读并同意</text>
-									<text class="user_text">《用户协议》</text>
+									<navigator url="用户协议" class="user_text ">《用户协议》</navigator>
 								</view>
-							</u-radio-group>
+							</u-checkbox-group>
 						</view>
 						<view class="login_button">
 							<view class="button" @click="loginForm">
@@ -62,7 +60,7 @@
 					</view>
 					<!-- 账号密码登录 -->
 					<view v-if="tabsIndex==1">
-						<u--form labelPosition="left" :model="form1" :rules="rules" ref="uForm">
+						<u--form labelPosition="left" :model="form1" :rules="rules1" ref="uForm">
 							<u-form-item label="+86" prop="phone" borderBottom ref="item1">
 								<u--input v-model="form.phone" placeholder="请输入手机号" border="none"></u--input>
 							</u-form-item>
@@ -71,13 +69,12 @@
 							</u-form-item>
 						</u--form>
 						<view class="user_agreement">
-							<u-radio-group v-model="radiovalue1" @change="groupChange">
-								<u-radio :customStyle="{marginBottom: '8px'}" v-for="(item, index) in radiolist1"
-									:key="index" :label="item.name" :name="item.name" @change="radioChange">
+							<u-radio-group v-model="radio" @change="groupChange">
+								<u-radio :customStyle="{marginBottom: '8px'}" @change="radioChange">
 								</u-radio>
-								<view class="agreement">
+								<view class="agreement d-flex">
 									<text class="lable">我已阅读并同意</text>
-									<text class="user_text">《用户协议》</text>
+									<navigator url="用户协议" class="user_text ">《用户协议》</navigator>
 								</view>
 							</u-radio-group>
 						</view>
@@ -129,6 +126,13 @@
 							message: '手机号码格式不正确',
 							trigger: 'blur'
 						}
+					],
+					code:[
+						{
+							required: true,
+							message: '验证码不能为空',
+							trigger: 'blur'
+						}
 					]
 				},
 
@@ -138,8 +142,8 @@
 						name: '',
 						disabled: false
 					},
-
 				],
+				checkbox1: false
 
 			}
 		},
@@ -150,67 +154,60 @@
 			codeChange(text) {
 				this.tips = text;
 			},
-			groupChange(n) {
-				console.log('groupChange', n);
+			checkboxChange(n) {
+				this.checkbox1 = !(Array.isArray(n) && n.length === 0);
+				// this.$u.vuex('vuex_version', '1.0.1');
+				    this.$u.vuex('vx_token', 12);
+					// console.log(this.vx_systemInfo)
 			},
 			radioChange(n) {
 				console.log('radioChange', n);
 			},
 			getCode() {
+				if (!uni.$u.test.email(this.form.phone)) return uni.$u.toast('请正确输入邮箱');
 				if (this.$refs.uCode.canGetCode) {
 					uni.showLoading({
 						title: '正在获取验证码'
 					})
 					sendEmailCode({
 						email: this.form.phone
-					}).then(res => {
-
 					}).catch(err => {
 						uni.$u.toast(err)
 					})
-
 					uni.hideLoading();
-					// 这里此提示会被this.start()方法中的提示覆盖
 					uni.$u.toast('验证码已发送');
-					// 通知验证码组件内部开始倒计时
 					this.$refs.uCode.start();
-
 				} else {
 					uni.$u.toast('倒计时结束后再发送');
 				}
 			},
 			// 快捷登录
 			loginForm() {
+				console.log(this.vx_token);
+				this.$refs.uForm.validate().then(res => {
+					
+					if (this.checkbox1 == true) {
+						emailLogin({
+							phoneOrEmail: this.form.phone,
+							code: this.form.code,
+							type: 1,
+							registryType: 2
+						}).then(res => {
+							uni.$u.toast('登录成功,正在前往');
+							// uni.navigateTo({
+							// 	url: "/pages/user/index/index"
+							// })
+						}).catch(err => {
+							uni.$u.toast(err)
+						})
+					} else {
+						uni.$u.toast('请勾选用户协议！');
+					}
 
 
-				emailLogin({
-					phoneOrEmail: this.form.phone,
-					code: this.form.code,
-					type: 1,
-					registryType: 2
-				}).then(res => {
-				uni.$u.toast('登录成功');
-				}).catch(err => {
-					uni.$u.toast(err)
+				}).catch(errors => {
+					uni.$u.toast(errors, '校验失败')
 				})
-				// uni.$u.http.post('/login/umUser', data).then(res => {
-				// 	console.log(res);
-				// 	this.$store.commit("setToken", {
-				// 		'token': res.token
-				// 	});
-				// }).catch(err => {
-				// 	console.log(err)
-				// })
-				// this.$refs.uForm.validate().then(res => {
-				// 	uni.$u.toast('登录成功');
-				// 	uni.navigateTo({
-				// 		url:"/pages/user/index/index"
-				// 	})
-
-
-				// }).catch(errors => {
-				// 	uni.$u.toast(errors,'校验失败')
-				// })
 			}
 		}
 	}
