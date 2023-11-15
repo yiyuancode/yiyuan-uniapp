@@ -96,7 +96,8 @@
 <script>
 	import {
 		sendEmailCode,
-		emailLogin
+		emailLogin,
+		getUserInfo
 	} from '@/config/api/user.js'
 	export default {
 		data() {
@@ -127,25 +128,24 @@
 							trigger: 'blur'
 						}
 					],
-					code:[
-						{
-							required: true,
-							message: '验证码不能为空',
-							trigger: 'blur'
-						}
-					]
+					code: [{
+						required: true,
+						message: '验证码不能为空',
+						trigger: 'blur'
+					}]
 				},
 
 				tips: "获取验证码",
 				disabled1: false,
 				radiolist1: [{
-						name: '',
-						disabled: false
-					},
-				],
+					name: '',
+					disabled: false
+				}, ],
 				checkbox1: false
-
 			}
+		},
+		created() {
+			this.getUser();
 		},
 		methods: {
 			onTabs(index) {
@@ -157,8 +157,8 @@
 			checkboxChange(n) {
 				this.checkbox1 = !(Array.isArray(n) && n.length === 0);
 				// this.$u.vuex('vuex_version', '1.0.1');
-				    this.$u.vuex('vx_token', 12);
-					// console.log(this.vx_systemInfo)
+				this.$u.vuex('vx_token', 12);
+				// console.log(this.vx_systemInfo)
 			},
 			radioChange(n) {
 				console.log('radioChange', n);
@@ -185,7 +185,7 @@
 			loginForm() {
 				console.log(this.vx_token);
 				this.$refs.uForm.validate().then(res => {
-					
+
 					if (this.checkbox1 == true) {
 						emailLogin({
 							phoneOrEmail: this.form.phone,
@@ -207,6 +207,17 @@
 
 				}).catch(errors => {
 					uni.$u.toast(errors, '校验失败')
+				})
+			},
+			getUser() {
+				getUserInfo({
+					
+						token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsb2dpblR5cGUiOiJsb2dpbiIsImxvZ2luSWQiOiJlZjI0NDExODU5M2RhMTJmMGEwNDZmZTgzNDgwNGZkMyIsInJuU3RyIjoib1ZjZEkyMWw1RHllVXUzZXpsbUFwMGxuNWQ4dnV2YlcifQ.w8nHb_1sOuQPLU8gavxYg_6_OGCdBbYPdy7A_knI3hM'
+					
+				}).then(res => {
+console.log(res)
+				}).catch(err => {
+console.log(err)
 				})
 			}
 		}

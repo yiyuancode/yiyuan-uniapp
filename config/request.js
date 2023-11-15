@@ -5,7 +5,7 @@ module.exports = (vm) => {
     uni.$u.http.setConfig((config) => {
         /* config 为默认全局配置*/
         // config.baseURL = 'https://yicode.net/app-api-dev/'; /* 根域名 */
-		config.baseURL='http://116.63.167.220:50013';
+		config.baseURL='http://yiyuan-app.hw.yicode.net';
         return config
     })
 	

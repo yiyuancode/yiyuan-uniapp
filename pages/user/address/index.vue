@@ -1,44 +1,40 @@
 <template>
 	<view class="container">
-		<u-navbar title="收货地址" placeholder @rightClick="rightClick" :autoBack="true">
+		<u-navbar title="管理地址" placeholder @rightClick="rightClick" :autoBack="true">
 		</u-navbar>
 		<view class="address">
-			<!-- 	<view>
-      <u-swipe-action>
-        <u-swipe-action-item
-          :options="options1"
-        >
-          <view class="swipe-action u-border-top u-border-bottom">
-            <view class="swipe-action__content">
-              <text class="swipe-action__content__text">基础使用</text>
-            </view>
-          </view>
-        </u-swipe-action-item>
-      </u-swipe-action>
-	</view> -->
+			<view class="address_item d-flex">
+				<view class="d-flex d-box">
+					<view class="icon d-flex ">
+						<image src="@/static/images/icon/address.png"></image>
+						<view class="">
 
-			<view class="item d-flex" v-for="(res, index) in siteList" :key="res.id">
-				<u-swipe-action>
-					<u-swipe-action-item :options="options1">
-						<view class="">
-						
 						</view>
-						<view class="">
-							<view class="bottom">
-								广东省深圳市宝安区 自由路66号
-								<!-- <u-icon name="edit-pen" :size="40" color="#999999"></u-icon> -->
+					</view>
+					<view class="address_item_content">
+						<view class="area">
+							四川成都市武侯区桂溪街道
+						</view>
+						<view class="user_address">
+							四川省成都市武侯区桂溪街道天府五街325号某某某小区1栋一单元
+						</view>
+						<view class="user d-flex">
+							<view class="name">
+								李某某
 							</view>
-							<view class="top d-flex">
-								<view class="name">{{ res.name }}</view>
-								<view class="phone">{{ res.phone }}</view>
-								<view class="tag">
-									<text v-for="(item, index) in res.tag" :key="index"
-										:class="{red:item.tagText=='默认'}">{{ item.tagText }}</text>
-								</view>
+							<view class="phone">
+								138****8888
 							</view>
 						</view>
-					</u-swipe-action-item>
-				</u-swipe-action>
+					</view>
+				</view>
+				<view class="operate">
+					<u-checkbox-group v-model="checkboxValue1" placement="column" @change="checkboxChange">
+						<u-checkbox :customStyle="{marginBottom: '8px'}" v-for="(item, index) in checkboxList1"
+							:key="index" :label="item.name" :name="item.name">
+						</u-checkbox>
+					</u-checkbox-group>
+				</view>
 			</view>
 
 		</view>
@@ -111,52 +107,76 @@
 		background: #F6F6F6;
 
 		.address {
-			.item {
-				padding: 40rpx 20rpx;
-				margin: 16rpx 0;
-				background: #ffffff;
+			box-sizing: border-box;
 
-				.top {
-					font-weight: bold;
-					font-size: 34rpx;
+			&_item {
+				position: relative;
+				width: 94%;
+				min-height: 303rpx;
+				border-radius: 8px;
+				background: #FFF;
+				margin: 0 auto;
+				margin-top: 16rpx;
 
-					.phone {
-						margin-left: 60rpx;
+				// align-items: center;
+				.icon {
+					margin: 0 32rpx;
+					align-items: center;
+
+					image {
+						width: 56rpx;
+						height: 56rpx;
+					}
+				}
+
+				.d-box {
+					align-items: center;
+				}
+
+				.d-box::after {
+					content: '';
+					width: 100%;
+					height: 1rpx;
+					background-color: #F2F4F7;
+					display: block;
+					position: absolute;
+					bottom: 20rpx;
+				}
+
+				&_content {
+					padding: 24rpx 0;
+					padding-right: 26rpx;
+					font-weight: 400;
+					font-family: PingFang SC;
+
+					.area {
+						color: #6D746B;
+						font-size: 24rpx;
 					}
 
-					.tag {
-						display: flex;
-						font-weight: normal;
-						align-items: center;
+					.user_address {
+						color: #0F1E0A;
+						font-size: 28rpx;
 
-						text {
-							display: block;
-							width: 60rpx;
-							height: 34rpx;
-							line-height: 34rpx;
-							color: #ffffff;
-							font-size: 20rpx;
-							border-radius: 6rpx;
-							text-align: center;
-							margin-left: 30rpx;
-							background-color: rgb(49, 145, 253);
+					}
+
+					.user {
+						margin-top: 8px;
+
+						.name {
+							color: #293226;
+							font-size: 28rpx;
 						}
 
-						.red {
-							background-color: red
+						.phone {
+							color: #444942;
+							font-family: PingFang SC;
+							font-size: 24rpx;
 						}
 					}
 				}
 
-				.bottom {
-					display: flex;
-					margin-top: 20rpx;
-					font-size: 28rpx;
-					justify-content: space-between;
-					color: #999999;
-				}
 			}
-
 		}
 
 	}
