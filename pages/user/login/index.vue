@@ -144,9 +144,7 @@
 				checkbox1: false
 			}
 		},
-		created() {
-			this.getUser();
-		},
+
 		methods: {
 			onTabs(index) {
 				this.tabsIndex = index
@@ -156,9 +154,6 @@
 			},
 			checkboxChange(n) {
 				this.checkbox1 = !(Array.isArray(n) && n.length === 0);
-				// this.$u.vuex('vuex_version', '1.0.1');
-				this.$u.vuex('vx_token', 12);
-				// console.log(this.vx_systemInfo)
 			},
 			radioChange(n) {
 				console.log('radioChange', n);
@@ -183,9 +178,7 @@
 			},
 			// 快捷登录
 			loginForm() {
-				console.log(this.vx_token);
 				this.$refs.uForm.validate().then(res => {
-
 					if (this.checkbox1 == true) {
 						emailLogin({
 							phoneOrEmail: this.form.phone,
@@ -194,32 +187,21 @@
 							registryType: 2
 						}).then(res => {
 							uni.$u.toast('登录成功,正在前往');
-							// uni.navigateTo({
-							// 	url: "/pages/user/index/index"
-							// })
-						}).catch(err => {
-							uni.$u.toast(err)
+						uni.switchTab({
+							url:'/pages/user/index/index'
+						})
+							this.$u.vuex('vx_token', res.token)
+
 						})
 					} else {
 						uni.$u.toast('请勾选用户协议！');
 					}
 
-
 				}).catch(errors => {
 					uni.$u.toast(errors, '校验失败')
 				})
 			},
-			getUser() {
-				getUserInfo({
-					
-						token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsb2dpblR5cGUiOiJsb2dpbiIsImxvZ2luSWQiOiJlZjI0NDExODU5M2RhMTJmMGEwNDZmZTgzNDgwNGZkMyIsInJuU3RyIjoib1ZjZEkyMWw1RHllVXUzZXpsbUFwMGxuNWQ4dnV2YlcifQ.w8nHb_1sOuQPLU8gavxYg_6_OGCdBbYPdy7A_knI3hM'
-					
-				}).then(res => {
-console.log(res)
-				}).catch(err => {
-console.log(err)
-				})
-			}
+
 		}
 	}
 </script>

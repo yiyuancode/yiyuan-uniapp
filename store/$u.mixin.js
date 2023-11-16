@@ -17,7 +17,6 @@ module.exports = {
 		// 使用方法为：如果要修改vuex的state中的user.name变量为"史诗" => this.$u.vuex('user.name', '史诗')
 		// 如果要修改vuex的state的version变量为1.0.1 => this.$u.vuex('version', '1.0.1')
 		this.$u.vuex = (name, value) => {
-			console.log(this.$u)
 			this.$store.commit('$uStore', {
 				name,value
 			})

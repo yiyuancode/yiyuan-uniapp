@@ -48,6 +48,7 @@
 </template>
 
 <script>
+	import {getUserAddress} from '@/config/api/user'
 	export default {
 		data() {
 			return {
@@ -60,7 +61,13 @@
 		onLoad() {
 			this.getData();
 		},
+		created() {
+			this.getIndex()
+		},
 		methods: {
+			getIndex(){
+				getUserAddress();
+			},
 			getData() {
 				this.siteList = [{
 						id: 1,

@@ -4,8 +4,8 @@ module.exports = (vm) => {
     // 初始化请求配置
     uni.$u.http.setConfig((config) => {
         /* config 为默认全局配置*/
-        // config.baseURL = 'https://yicode.net/app-api-dev/'; /* 根域名 */
-		config.baseURL='http://yiyuan-app.hw.yicode.net';
+        config.baseURL = 'http://116.63.167.220:50013'; /* 根域名 */
+		// config.baseURL='http://yiyuan-app.hw.yicode.net';
         return config
     })
 	
@@ -14,9 +14,10 @@ module.exports = (vm) => {
 	    // 初始化请求拦截器时，会执行此方法，此时data为undefined，赋予默认{}
 	    config.data = config.data || {}
 		// 根据custom参数中配置的是否需要token，添加对应的请求头
-		if(config?.custom?.auth) {
+		if(config?.custom?.token) {
 			// 可以在此通过vm引用vuex中的变量，具体值在vm.$store.state中
-			config.header.token = vm.$store.state.userInfo.token
+			// config.header.token = vm.$store.state.userInfo.token
+			config.header.apptoken = vm.$store.state.vx_token;
 		}
 	    return config 
 	}, config => { // 可使用async await 做异步操作
@@ -26,9 +27,9 @@ module.exports = (vm) => {
 	// 响应拦截
 	uni.$u.http.interceptors.response.use((response) => { /* 对响应成功做点什么 可使用async await 做异步操作*/
 		const data = response.data
-
 		// 自定义参数
-		const custom = response.config?.custom
+		const custom = response.config?.custom;
+		
 		if (data.code !== 200) { 
 			// 如果没有显式定义custom的toast参数为false的话，默认对报错进行toast弹出提示
 			if (custom.toast !== false) {

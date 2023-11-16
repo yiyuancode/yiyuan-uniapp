@@ -195,6 +195,9 @@
 
 <script>
 	import tabBar from '@/components/tabBar/index.vue';
+	import {
+		getUserInfo
+	} from '@/config/api/user'
 	export default {
 		components: {
 			tabBar
@@ -202,25 +205,43 @@
 		data() {
 			return {
 				avatar: "/static/images/user/avatar.png",
-				noLogin: false
+				noLogin: false,
+				userInfo: {}
 			}
 		},
+		created() {
+			this.getUser();
+		},
+		mounted() {
+			if(this.userInfo.id != '') return this.noLogin = true;
+			
+		},
 		methods: {
+			// 获取用户信息
+			getUser() {
+				getUserInfo({
+					custom: {
+						token: true
+					}
+				}).then(res => {
+					this.userInfo = res;
+				})
+			},
 			login() {
 				uni.navigateTo({
 					url: "/pages/user/login/index"
 				})
 			},
 			// 用户地址
-			userAdress(){
+			userAdress() {
 				uni.navigateTo({
-					url:"/pages/user/address/index"
+					url: "/pages/user/address/index"
 				})
 			},
 			// 全部订单
-			allOrder(){
+			allOrder() {
 				uni.$u.route('/pages/user/order/list');
-			}
+			},
 		}
 	}
 </script>

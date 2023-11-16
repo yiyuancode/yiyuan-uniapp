@@ -18,3 +18,11 @@ config/request.js
 修改 `VX_test` 的值：`this.$u.vuex('VX_test', '目标值')`；
 
 需要持久化存储的变量需要把变量名添加至数组 `saveStateKeys` 中；
+#pre
+get请求传参
+api
+export const getUserInfo =(params,config = {})  => http.get('/login/getUserInfo/um',  params, config)
+
+	getUserInfo({data:{'jsoncode':1}, custom: { token: true }}).then(res => {
+					console.log(res)
+				})
