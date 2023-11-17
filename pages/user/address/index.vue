@@ -3,8 +3,8 @@
 		<u-navbar title="管理地址" placeholder @rightClick="rightClick" :autoBack="true">
 		</u-navbar>
 		<view class="address">
-			<view class="address_item d-flex">
-				<view class="d-flex d-box">
+			<view class="address_item relative d-flex">
+				<view class="d-flex d-box relative align-items-center">
 					<view class="icon d-flex ">
 						<image src="@/static/images/icon/address.png"></image>
 						<view class="">
@@ -28,34 +28,59 @@
 						</view>
 					</view>
 				</view>
-				<view class="operate">
-					<u-checkbox-group v-model="checkboxValue1" placement="column" @change="checkboxChange">
-						<u-checkbox :customStyle="{marginBottom: '8px'}" v-for="(item, index) in checkboxList1"
-							:key="index" :label="item.name" :name="item.name">
-						</u-checkbox>
-					</u-checkbox-group>
+				<view class="operate d-flex justify-content-between align-items-center">
+					<view class="setup d-flex align-items-center">
+						<u-checkbox-group v-model="checkboxValue1" placement="column" @change="checkboxChange">
+							<u-checkbox shape="circle" activeColor="#BEF000" iconColor="#000">
+							</u-checkbox>
+						</u-checkbox-group>
+						<view class="text">设置为默认地址</view>
+					</view>
+					<view class="button d-flex">
+						<view class="edit">
+							编辑
+						</view>
+						<view class="del">
+							删除
+						</view>
+					</view>
 				</view>
 			</view>
 
 		</view>
 
-		<view class="addSite" @tap="toAddSite">
-			<view class="add">
-				<u-icon name="plus" color="#ffffff" class="icon" :size="30"></u-icon>新建收货地址
+		<view class="addSite">
+			<view class="add" @tap="toAddSite">
+				新增收货地址
 			</view>
 		</view>
 	</view>
 </template>
 
 <script>
-	import {getUserAddress} from '@/config/api/user'
+	import {
+		getUserAddress
+	} from '@/config/api/user'
 	export default {
 		data() {
 			return {
 				siteList: [],
 				options1: [{
 					text: '删除'
-				}]
+				}],
+				checkboxList1: [{
+						name: '苹果',
+						disabled: false
+					},
+					{
+						name: '香蕉',
+						disabled: false
+					},
+					{
+						name: '橙子',
+						disabled: false
+					}
+				],
 			};
 		},
 		onLoad() {
@@ -65,8 +90,12 @@
 			this.getIndex()
 		},
 		methods: {
-			getIndex(){
-				getUserAddress();
+			getIndex() {
+				getUserAddress({
+					custom: {
+						token: true
+					}
+				});
 			},
 			getData() {
 				this.siteList = [{
@@ -112,18 +141,19 @@
 <style lang="scss" scoped>
 	.container {
 		background: #F6F6F6;
+		min-height: 100vh;
 
 		.address {
 			box-sizing: border-box;
 
 			&_item {
-				position: relative;
 				width: 94%;
-				min-height: 303rpx;
+				height: 303rpx;
 				border-radius: 8px;
 				background: #FFF;
 				margin: 0 auto;
 				margin-top: 16rpx;
+				flex-direction: column;
 
 				// align-items: center;
 				.icon {
@@ -136,9 +166,7 @@
 					}
 				}
 
-				.d-box {
-					align-items: center;
-				}
+
 
 				.d-box::after {
 					content: '';
@@ -147,7 +175,7 @@
 					background-color: #F2F4F7;
 					display: block;
 					position: absolute;
-					bottom: 20rpx;
+					bottom: 0;
 				}
 
 				&_content {
@@ -183,6 +211,28 @@
 					}
 				}
 
+				.operate {
+					padding: 0 26rpx 0 36rpx;
+					height: 100%;
+
+					.setup {
+						color: #6D746B;
+						font-family: PingFang SC;
+						font-size: 24rpx;
+						font-weight: 400;
+					}
+
+					.button {
+						color: #6D746B;
+						font-family: PingFang SC;
+						font-size: 24rpx;
+						font-weight: 400;
+
+						.edit {
+							padding-right: 42rpx;
+						}
+					}
+				}
 			}
 		}
 
@@ -190,25 +240,24 @@
 
 
 	.addSite {
-		display: flex;
-		justify-content: space-around;
-		width: 600rpx;
-		line-height: 100rpx;
+		width: 100%;
+		height: 90px;
+		background: #ffffff;
 		position: absolute;
-		bottom: 30rpx;
-		left: 80rpx;
-		background-color: red;
-		border-radius: 60rpx;
-		font-size: 30rpx;
+		bottom: 0;
 
 		.add {
-			display: flex;
-			align-items: center;
-			color: #ffffff;
-
-			.icon {
-				margin-right: 10rpx;
-			}
+			width: 94%;
+			margin: 0 auto;
+			height: 88rpx;
+			border-radius: 8px;
+			background: #F94E05;
+			margin-top: 14rpx;
+			color: #FFF;
+			text-align: center;
+			line-height: 88rpx;
+			font-family: PingFang SC;
+			font-size: 28rpx;
 		}
 	}
 </style>

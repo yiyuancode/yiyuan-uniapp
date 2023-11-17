@@ -1,173 +1,172 @@
 <template>
-	<view class="wrap">
-		<view class="top">
-			<view class="item">
-				<view class="left">收货人</view>
-				<input type="text" placeholder-class="line" placeholder="请填写收货人姓名" />
+	<view class="container">
+		<u-navbar title="新建收货地址" placeholder @rightClick="rightClick" :autoBack="true">
+		</u-navbar>
+		<view class="wrap">
+			<view class="top">
+				<u--form labelPosition="left" labelWidth="80" :model="formData" :rules="rules" ref="uForm">
+					<u-form-item label="收货人" prop="userInfo.name">
+						<u--input v-model="formData.userInfo.name" placeholder="请填写收货人姓名" border="none"></u--input>
+					</u-form-item>
+					<u-form-item label="手机号码" prop="userInfo.name">
+						<u--input v-model="formData.userInfo.name" placeholder="请填写收货人手机号码" border="none"></u--input>
+					</u-form-item>
+
+					<u-form-item label="所在地区" prop="userInfo.sex" @click="show = true; hideKeyboard()" ref="item1">
+						<u--input v-model="formData.userInfo.sex" disabled disabledColor="#ffffff"
+							placeholder="省市区县、乡镇等" border="none"></u--input>
+						<u-icon slot="right" name="arrow-right"></u-icon>
+					</u-form-item>
+
+					<u-form-item label="详细地址" prop="userInfo.name">
+						<u--input v-model="formData.userInfo.name" placeholder="街道、楼牌号等" border="none"></u--input>
+					</u-form-item>
+					<u-form-item label=" " prop="intro">
+						<u--textarea placeholder="试试粘贴收件人姓名、手机号、收货地址可快速识别您的收件信息" v-model="formData.intro"
+							count></u--textarea>
+					</u-form-item>
+				</u--form>
+				<u-picker title="标题太长就会显示省略号" :show="show" ref="uPicker" :loading="loading" :columns="columns"
+					@change="changeHandler"></u-picker>
 			</view>
-			<view class="item">
-				<view class="left">手机号码</view>
-				<input type="text" placeholder-class="line" placeholder="请填写收货人手机号" />
-			</view>
-			<view class="item" @tap="showRegionPicker">
-				<view class="left">所在地区</view>
-				<input disabled type="text" placeholder-class="line" placeholder="省市区县、乡镇等" />
-			</view>
-			<view class="item address">
-				<view class="left">详细地址</view>
-				<textarea type="text" placeholder-class="line" placeholder="街道、楼牌等" />
-			</view>
-			<!-- <view class="site-clipboard">
-				<textarea placeholder-class="line" value="" placeholder="粘贴文本,可自动识别姓名和地址等" />
-				<view class="clipboard">
-					地址粘贴板
-					<u-icon name="arrow-down" class="icon" :size="20"></u-icon>
-				</view>
-			</view> -->
-		</view>
-		<view class="bottom">
-			<view class="tag">
-				<view class="left">标签</view>
-				<view class="right">
-					<text class="tags">家</text>
-					<text class="tags">公司</text>
-					<text class="tags">学校</text>
-					<view class="tags plus"><u-icon size="22" name="plus"></u-icon></view>
-				</view>
-			</view>
-			<view class="default">
-				<view class="left">
-					<view class="set">设置默认地址</view>
-					<view class="tips">提醒：每次下单会默认推荐该地址</view>
-				</view>
-				<view class="right"><switch color="red" @change="setDefault" /></view>
+			<view class="setup d-flex align-items-center">
+				<u-cell-group :border="false">
+					<u-cell title="设置为默认地址" :border="false" arrow-direction="down">
+						<u-switch slot="right-icon" v-model="value" activeColor="#000000"></u-switch>
+					</u-cell>
+				</u-cell-group>
 			</view>
 		</view>
-		<u-picker mode="region" ref="uPicker" v-model="show" />
+		<view class="add-wrap">
+			<view class="add">
+				保存使用
+			</view>
+		</view>
 	</view>
 </template>
 
 <script>
-export default {
-	data() {
-		return {
-			show: false
-		};
-	},
-	methods: {
-		setDefault() {},
-		showRegionPicker() {
-			this.show = true;
+	import {
+		addUserAddress
+	} from '@/config/api/user'
+	export default {
+		data() {
+			return {
+				show: false,
+				loading: false,
+				value: true,
+				columns: [
+					['中国', '美国'],
+					['深圳', '厦门', '上海', '拉萨']
+				],
+				columnData: [
+					['深圳', '厦门', '上海', '拉萨'],
+					['得州', '华盛顿', '纽约', '阿拉斯加']
+				],
+				formData: {
+					intro: ''
+				}
+			};
+		},
+		methods: {
+			setDefault() {},
+			showRegionPicker() {
+				this.show = true;
+			},
+			addAddress() {
+				addUserAddress({
+					custom: {
+						token: true
+					}
+				}).then(res=>{
+					
+				})
+			}
 		}
-	}
-};
+	};
 </script>
 
 <style lang="scss" scoped>
-:v-deep(.line) {
-	color: $u-light-color;
-	font-size: 28rpx;
-}
-.wrap {
-	background-color: #f2f2f2;
-	.top {
-		background-color: #ffffff;
-		border-top: solid 2rpx $u-border-color;
-		padding: 22rpx;
-		.item {
-			display: flex;
-			font-size: 32rpx;
-			line-height: 100rpx;
-			align-items: center;
-			border-bottom: solid 2rpx $u-border-color;
-			.left {
-				width: 180rpx;
-			}
-			input {
-				text-align: left;
-			}
-		}
-		
-		.address {
-			padding: 20rpx 0;
-			textarea {
-				// width: 100%;
-				height: 150rpx;
-				background-color: #f7f7f7;
-				line-height: 60rpx;
-				margin: 40rpx auto;
-				padding: 20rpx;
-			}
-		}
-		.site-clipboard {
-			padding-right: 40rpx;
-			textarea {
-				// width: 100%;
-				height: 150rpx;
-				background-color: #f7f7f7;
-				line-height: 60rpx;
-				margin: 40rpx auto;
-				padding: 20rpx;
-			}
-			.clipboard {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				font-size: 26rpx;
-				color: $u-tips-color;
-				height: 80rpx;
-				.icon {
-					margin-top: 6rpx;
-					margin-left: 10rpx;
-				}
-			}
-		}
-	}
-	.bottom {
-		margin-top: 20rpx;
-		padding: 40rpx;
-		padding-right: 0;
-		background-color: #ffffff;
-		font-size: 28rpx;
-		.tag {
-			display: flex;
-			.left {
-				width: 160rpx;
-			}
-			.right {
-				display: flex;
-				flex-wrap: wrap;
-				.tags {
-					width: 140rpx;
-					padding: 16rpx 8rpx;
-					border: solid 2rpx $u-border-color;
-					text-align: center;
-					border-radius: 50rpx;
-					margin: 0 10rpx 20rpx;
-					display: flex;
+	.container {
+		background: #F2F4F7;
+		min-height: 100vh;
+
+		.wrap {
+			background-color: #f2f2f2;
+			width: 94%;
+			margin: 0 auto;
+			margin-top: 16rpx;
+			box-sizing: border-box;
+
+			.top {
+				background-color: #ffffff;
+				padding: 26rpx;
+				border-radius: 16rpx;
+
+				/deep/ .u-form-item__body__left__content {
+					color: #293226;
+					font-family: PingFang SC;
 					font-size: 28rpx;
-					align-items: center;
-					justify-content: center;
-					color: $u-content-color;
-					line-height: 1;
+					font-weight: 400;
 				}
-				.plus {
-					//padding: 10rpx 0;
+
+				/deep/ .u-form-item:last-child {
+
+					.u-form-item__body__left {
+						display: none !important;
+					}
+
+					.u-border {
+						border-color: #F2F4F7 !important;
+					}
 				}
+
+
+
+
 			}
+
+			.setup {
+				width: 100%;
+				height: 98rpx;
+				margin: 0 auto;
+				border-radius: 8px;
+				background: #FFF;
+				margin-top: 16rpx;
+
+				/deep/ .u-cell__right-icon-wrap--down {
+					transform: rotate(0) !important;
+				}
+
+				/deep/ .u-switch__node {
+					background: #BEF000;
+				}
+
+			}
+
 		}
-		.default {
-			margin-top: 50rpx;
-			display: flex;
-			justify-content: space-between;
-			border-bottom: solid 2rpx $u-border-color;
-			line-height: 64rpx;
-			.tips {
-				font-size: 24rpx;
-			}
-			.right {
+
+		.add-wrap {
+			width: 100%;
+			height: 180rpx;
+			background: #FFF;
+			position: absolute;
+			bottom: 0;
+
+			.add {
+				width: 94%;
+				height: 88rpx;
+				margin: 0 auto;
+				margin-top: 14rpx;
+				color: #FFF;
+				text-align: center;
+				line-height: 88rpx;
+				font-family: PingFang SC;
+				font-size: 28rpx;
+				font-weight: 400;
+				border-radius: 16rpx;
+				background: #F94E05;
 			}
 		}
 	}
-}
 </style>

@@ -11,4 +11,7 @@ export const emailLogin = (data) => http.post('/login/umUser', data);
 export const getUserInfo =(params,config = {})  => http.get('/login/getUserInfo/um',  params, config)
 
 // 获取用户收货地址
-export const getUserAddress=(params,config={}) => http.get('/um/userAddress/list',params)
+export const getUserAddress=(params,config={}) => http.get('/um/userAddress/list',params,config);
+
+// 添加收货地址
+export const addUserAddress=(params,config={})=>http.post('/um/userAddress/add',params,config);

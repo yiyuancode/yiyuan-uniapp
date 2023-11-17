@@ -65,4 +65,19 @@
 	.d-flex{
 		display: flex;
 	}
+	.relative{
+		position: relative;
+	}
+	.absolute{
+		position: absolute;
+	}
+	.align-items-center{
+		align-items: center;
+	}
+	.justify-content-arround{
+		justify-content: space-around;
+	}
+	.justify-content-between{
+		justify-content: space-between;
+	}
 </style>
