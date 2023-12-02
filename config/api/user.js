@@ -15,3 +15,6 @@ export const getUserAddress=(params,config={}) => http.get('/um/userAddress/list
 
 // 添加收货地址
 export const addUserAddress=(params,config={})=>http.post('/um/userAddress/add',params,config);
+
+// 获取省市区(懒加载)
+export const getArea=(params,config={})=>http.get('/sys/area/Query/0',params,config)

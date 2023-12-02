@@ -47,6 +47,7 @@
 
 <script>
 	import {
+		getArea,
 		addUserAddress
 	} from '@/config/api/user'
 	export default {
@@ -68,6 +69,9 @@
 				}
 			};
 		},
+		created(){
+			this.getLArea()
+		},
 		methods: {
 			setDefault() {},
 			showRegionPicker() {
@@ -81,6 +85,9 @@
 				}).then(res=>{
 					
 				})
+			},
+			getLArea(){
+				getArea()
 			}
 		}
 	};
