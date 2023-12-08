@@ -48,6 +48,7 @@
 							</u-checkbox-group>
 						</view>
 						<view class="login_button">
+							<button open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">获取电话</button>
 							<view class="button" @click="loginForm">
 								登录
 							</view>
@@ -95,10 +96,13 @@
 
 <script>
 	import {
+		getUserInfo,
+	} from '@/config/api/user.js'
+	import {
 		sendEmailCode,
 		emailLogin,
-		getUserInfo
-	} from '@/config/api/user.js'
+		wxLogin
+	} from '@/config/api/login.js'
 	export default {
 		data() {
 			return {
@@ -146,6 +150,13 @@
 		},
 
 		methods: {
+			getPhoneNumber(res) { // 获取手机号
+				console.log(res)
+				this.phone_code = res.detail.code // 获得的手机code
+				this.phone_encryptedData = res.detail.encryptedData //用于解密
+				this.phone_iv = res.detail.iv // 用于解密
+
+			},
 			onTabs(index) {
 				this.tabsIndex = index
 			},
@@ -178,28 +189,54 @@
 			},
 			// 快捷登录
 			loginForm() {
-				this.$refs.uForm.validate().then(res => {
-					if (this.checkbox1 == true) {
-						emailLogin({
-							phoneOrEmail: this.form.phone,
-							code: this.form.code,
-							type: 1,
-							registryType: 2
-						}).then(res => {
-							uni.$u.toast('登录成功,正在前往');
-						uni.switchTab({
-							url:'/pages/user/index/index'
-						})
-							this.$u.vuex('vx_token', res.token)
+				// uni.login({
+				//   provider: 'weixin',
+				//   success: function (loginRes) {
+				//     console.log(loginRes);
+				// 		wxLogin({
+				// 			custom: {
+				// 				token: true
+				// 			},
+				// 			params:{
+				// 				code:loginRes.code
+				// 			}
+				// 		}).then(res=>{
+				// 			console.log(res)
+				// 			// 获取用户信息
 
-						})
-					} else {
-						uni.$u.toast('请勾选用户协议！');
+				// 		})
+
+
+				//   }
+				// });
+				uni.getUserProfile({
+					provider: 'weixin',
+					success: function(infoRes) {
+						console.log('用户昵称为：' + infoRes.userInfo.nickName);
 					}
+				});
+				// this.$refs.uForm.validate().then(res => {
+				// 	if (this.checkbox1 == true) {
+				// 		emailLogin({
+				// 			phoneOrEmail: this.form.phone,
+				// 			code: this.form.code,
+				// 			type: 1,
+				// 			registryType: 2
+				// 		}).then(res => {
+				// 			uni.$u.toast('登录成功,正在前往');
+				// 		uni.switchTab({
+				// 			url:'/pages/user/index/index'
+				// 		})
+				// 			this.$u.vuex('vx_token', res.token)
 
-				}).catch(errors => {
-					uni.$u.toast(errors, '校验失败')
-				})
+				// 		})
+				// 	} else {
+				// 		uni.$u.toast('请勾选用户协议！');
+				// 	}
+
+				// }).catch(errors => {
+				// 	uni.$u.toast(errors, '校验失败')
+				// })
 			},
 
 		}

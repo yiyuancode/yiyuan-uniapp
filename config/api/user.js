@@ -18,3 +18,6 @@ export const addUserAddress=(params,config={})=>http.post('/um/userAddress/add',
 
 // 获取省市区(懒加载)
 export const getArea=(params,config={})=>http.get('/sys/area/Query/0',params,config)
+
+// 微信登陆
+export const wxLogin=(params,config={})=>http.get('/wx/user/wx1e8ecdf40bf53991/login',params,config)
